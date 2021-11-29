@@ -20,8 +20,6 @@ bower_components/
 # misc
 .sass-cache/
 .angular/
-.editorconfig
-.browserslistrc
 connect.lock/
 coverage/
 libpeerconnection.log/
