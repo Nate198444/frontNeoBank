@@ -15,6 +15,8 @@ import { ContactComponent } from './contact/contact.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { LoanListComponent } from './loan-list/loan-list.component';
+import { TransactionFormComponent } from './transaction-form/transaction-form.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { LoanListComponent } from './loan-list/loan-list.component';
     ContactComponent,
     TransactionListComponent,
     CardListComponent,
-    LoanListComponent
+    LoanListComponent,
+    TransactionFormComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
