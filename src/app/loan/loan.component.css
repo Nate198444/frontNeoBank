@@ -1,0 +1,11 @@
+.body{
+  background-color: #EFEFEF;
+  height: 100vh;
+  width: 100%;
+  padding: 1%;
+}
+
+.container-lg{
+  background: linear-gradient(70deg, white, lightgrey);
+  border-radius: 25px;
+}
