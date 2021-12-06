@@ -1,0 +1,31 @@
+.left-Profil {
+  background-color: burlywood;
+  height: 100vh;
+}
+.sidebar {
+  background-color: white;
+  color: black;
+  height: 100vh;
+}
+.profil {
+  padding-top: 100px;
+}
+.sidebar img {
+  padding-top: 200px;
+}
+.sidebar h3 {
+  padding-bottom: 50px;
+}
+.sidebar a {
+  margin-left: 10px;
+  display: block;
+  color: black;
+  padding-bottom: 20px;
+  font-size: 15px;
+  text-decoration: none;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
