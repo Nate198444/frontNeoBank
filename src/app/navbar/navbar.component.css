@@ -2,6 +2,10 @@
   color: azure;
   size: 30px;
   background-color: #4b6587;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
   font-weight: bold;
   font-style: italic;
 }

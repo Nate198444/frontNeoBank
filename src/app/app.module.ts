@@ -18,6 +18,19 @@ import { TransactionFormComponent } from './transaction-form/transaction-form.co
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { HomeComponent } from './home/home.component';
+import { RouterModule, Routes } from "@angular/router";
+
+const appRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'account', component: AccountComponent },
+  { path: 'card', component: CardListComponent },
+  { path: 'contact', component: ContactListComponent },
+  { path: 'loan', component: LoanListComponent },
+  { path: 'transactionForm', component: TransactionFormComponent },
+  { path: 'account', component: LeftProfilComponent, outlet: "outlet1" },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
+];
+
 
 @NgModule({
   declarations: [
@@ -39,7 +52,7 @@ import { HomeComponent } from './home/home.component';
     FooterComponent,
     HomeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes)],
   providers: [],
   bootstrap: [AppComponent],
 })

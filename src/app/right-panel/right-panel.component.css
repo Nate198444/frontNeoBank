@@ -1,4 +1,6 @@
 .right_panel {
-  background-color: #ececec;
-  height: 100vh;
+  background-color: #efefef;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
 }
