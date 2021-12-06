@@ -1,1 +1,15 @@
-<p>contact-list works!</p>
+<div class="row col-6 offset-3 mb-5">
+  <button class="btn btn-light mx-auto px-0" style="width: 30px;" *ngFor="let letter of alphabet">{{letter}}</button>
+</div>
+
+<div class="p-3 mx-auto border border-2" style="background-color: white; width: 90%; border-radius: 20px;">
+  <h4 class="mb-4 fw-normal">Contacts</h4>
+  <ul style="list-style: none;">
+    <li><app-contact></app-contact></li>
+    <li><app-contact></app-contact></li>
+    <li><app-contact></app-contact></li>
+    <li><app-contact></app-contact></li>
+    <li><app-contact></app-contact></li>
+    <li><app-contact></app-contact></li>
+  </ul>
+</div>
