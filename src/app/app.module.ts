@@ -17,6 +17,7 @@ import { RightPanelComponent } from './right-panel/right-panel.component';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TransactionComponent } from './transaction/transaction.component';
     LoginComponent,
     TransactionFormComponent,
     FooterComponent,
+    HomeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
