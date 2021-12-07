@@ -4,11 +4,17 @@
   margin: 0;
   padding: 0;
 }
+
 .nav{
   margin: 0;
   padding: 0;
 }
+
 .row{
   width: 100%;
   height: 100%;
+}
+
+.panel{
+  --bs-gutter-x: 0;
 }
