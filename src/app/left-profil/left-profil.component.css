@@ -4,10 +4,16 @@
   width: 100%;
 }
 
-.img{
+.img {
   margin-top: 50%;
 }
 
-.row{
+.row {
   text-align: center;
+}
+button {
+  border: none;
+  padding: 0;
+  background: none;
+  font-weight: 400;
 }
