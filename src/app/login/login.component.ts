@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TestService } from '../test.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  users$!: Observable<User[]>;
+
+  constructor(private api: TestService) {}
 
   ngOnInit(): void {
+    this.users$ = this.api.get();
+    this.getUsers();
   }
 
+  /**
+   * getUsers
+   */
+  public getUsers() {
+    this.users$.subscribe(user => {
+      console.log(user);
+
+    })
+
+  }
 }
