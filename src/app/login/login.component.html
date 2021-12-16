@@ -6,25 +6,25 @@
         <h5 class="modal-title" id="exampleModalLabel">Connectez-vous</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form class="col-8 mx-auto text-center">
+      <form class="col-8 mx-auto text-center" [formGroup]="loginForm" (ngSubmit)="connectUser()">
         <div class="modal-body">
-          
+
             <div style="background-color: #4B6587;">
               </div>
-          
-          
+
+
             <div class="form-floating">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="username">
               <label for="floatingInput">Addresse mail</label>
             </div>
             <div class="form-floating mt-2">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="mot de passe">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="mot de passe" formControlName="password">
               <label for="floatingPassword">Mot de passe</label>
             </div>
-          
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary mx-auto">Connexion</button>
+          <button type="button" class="btn btn-primary mx-auto" (click)="connectUser()">Connexion</button>
         </div>
       </form>
     </div>

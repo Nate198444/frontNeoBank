@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from '../authentication.service';
 import { TestService } from '../test.service';
+import { TokenWallet } from '../token-wallet';
 import { User } from '../user';
+import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -10,11 +13,22 @@ import { User } from '../user';
 })
 export class LoginComponent implements OnInit {
 
-  users$!: Observable<User[]>;
+  token$!: Observable<TokenWallet>;
 
-  constructor(private api: TestService) {}
+  loginForm = this.formBuilder.group({
+    username: '',
+    password: ''
+  });
+
+  constructor(private api: AuthenticationService, private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
-    this.users$ = this.api.get();
+  }
+
+  public connectUser() {
+    this.token$ = this.api.connect(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value);
+    console.log(this.token$.subscribe(token => token.Token));
+
   }
 }
