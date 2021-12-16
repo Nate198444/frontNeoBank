@@ -1,4 +1,5 @@
 <div class="row col-6 offset-3 mb-5">
+  <button class="btn btn-light mx-auto px-0" style="width: 30px;" (click)="filterContacts('')" >*</button>
   <button class="btn btn-light mx-auto px-0" style="width: 30px;" *ngFor="let letter of alphabet" value="letter" (click)="filterContacts(letter)" >{{letter}}</button>
 </div>
 
