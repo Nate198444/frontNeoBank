@@ -18,7 +18,7 @@ export class TestService {
   }
 
   public get(): Observable<User[]>{
-    // Get user 1 data
+    // Get user 2 data
     return this.http.get<User[]>(this.accessPointUrl, {headers: this.headers});
   }
 }

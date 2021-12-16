@@ -16,17 +16,5 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.users$ = this.api.get();
-    this.getUsers();
-  }
-
-  /**
-   * getUsers
-   */
-  public getUsers() {
-    this.users$.subscribe(user => {
-      console.log(user);
-
-    })
-
   }
 }
