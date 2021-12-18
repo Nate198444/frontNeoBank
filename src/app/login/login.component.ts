@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { catchError, isEmpty, Observable } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
-import { TestService } from '../test.service';
 import { TokenWallet } from '../token-wallet';
 import { User } from '../user';
-import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+import { of } from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -12,23 +13,35 @@ import { FormBuilder, ReactiveFormsModule } from "@angular/forms";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  @ViewChild('closebutton') closebutton: any;
   token$!: Observable<TokenWallet>;
+  user: User = {
+    Username: "",
+    Password: ""
+  }
+  @Output() errorMessage: string = "";
 
-  loginForm = this.formBuilder.group({
-    username: '',
-    password: ''
-  });
 
-  constructor(private api: AuthenticationService, private formBuilder: FormBuilder) {
+  constructor(private api: AuthenticationService, private router: Router,  private cookieService: CookieService) {
   }
 
   ngOnInit(): void {
   }
 
   public connectUser() {
-    this.token$ = this.api.connect(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value);
-    console.log(this.token$.subscribe(token => token.Token));
+
+    this.token$ = this.api.connect(this.user)
+
+
+    this.token$.subscribe(
+      token => {
+        this.cookieService.set("token", token.Token);
+        this.closebutton.nativeElement.click();
+      },
+      err => {
+        this.errorMessage = "Mauvaise combinaison de pseudo/mot de passe"
+      }
+    );
 
   }
 }

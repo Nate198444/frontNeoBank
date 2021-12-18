@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -55,7 +56,7 @@ const appRoutes: Routes = [
     HomeComponent,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes),FormsModule,ReactiveFormsModule],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

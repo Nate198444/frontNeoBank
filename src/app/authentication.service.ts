@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TokenWallet } from './token-wallet';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,13 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8;'
+      'Content-Type': 'application/json; charset=utf-8;',
+      'Accept' : 'application/json'
     });
   }
 
-  public connect(username: string, password: string): Observable<TokenWallet>{
-    return this.http.post<TokenWallet>(this.accessPointUrl + "?username=" + username + "&password=" + password, {headers: this.headers});
+  public connect(user: User): Observable<TokenWallet>{
+    return this.http.post<TokenWallet>(this.accessPointUrl, user);
   }
 
   // public disconnect(id: number, token: string): Observable<TokenWallet>{
