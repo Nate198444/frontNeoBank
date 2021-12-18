@@ -1,9 +1,15 @@
-<div class="row col-6 offset-3 mb-5">
-  <button class="btn btn-light mx-auto px-0" style="width: 30px;" (click)="filterContacts('')" >*</button>
-  <button class="btn btn-light mx-auto px-0" style="width: 30px;" *ngFor="let letter of alphabet" value="letter" (click)="filterContacts(letter)" >{{letter}}</button>
+<div class="row col-10 mt-3">
+  <div class="col-6 offset-3 mb-5 text-center">
+    <button class="btn btn-light mx-auto px-0" style="width: 30px;" (click)="filterContacts('')" >*</button>
+    <button class="btn btn-light mx-auto px-0" style="width: 30px;" *ngFor="let letter of alphabet" value="letter" (click)="filterContacts(letter)" >{{letter}}</button>
+  </div>
+  <div class="col-2 offset-1">
+    <button class="btn btn-primary" routerLink="/contact/add">Ajouter un contact</button>
+  </div>
 </div>
 
-<div class="p-3 mx-auto border border-2" style="background-color: white; width: 90%; border-radius: 20px;">
+
+<div class="p-3 mx-auto border border-2 mt-2" style="background-color: white; width: 90%; border-radius: 20px;">
   <h4 class="mb-4 fw-normal">Contacts</h4>
   <ul style="list-style: none;">
     <li *ngFor="let contact of filteredContacts$ |async;"><app-contact [contact]="contact"></app-contact></li>

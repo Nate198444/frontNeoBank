@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { Contact } from '../contact';
+import { ContactService } from '../contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,9 +11,13 @@ import { Contact } from '../contact';
 export class ContactComponent implements OnInit {
   @Input() contact!: Contact
 
-  constructor() { }
+  constructor(private api: ContactService, cookie: CookieService) { }
 
   ngOnInit(): void {
   }
 
+  public deleteContact(){
+    this.api.deleteContact(this.contact.Id!).subscribe();
+    location.reload();
+  }
 }

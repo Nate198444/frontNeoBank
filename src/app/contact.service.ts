@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Contact } from './contact';
 import { environment } from "../environments/environment";
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,9 @@ export class ContactService {
   private headers: HttpHeaders;
   private accessPointUrl: string = environment.urlPicsou + '/Contacts';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private cookie: CookieService) {
     this.headers = new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8;',
-      'x-auth-token': '0VDwWm3mmkmXuf4iI149SA=='
+      'x-auth-token': this.cookie.get("token")
     });
   }
 
@@ -23,18 +23,19 @@ export class ContactService {
   }
 
   public getOneContact(id: number): Observable<Contact>{
-    return this.http.get<Contact>(this.accessPointUrl + '?id=' + id, {headers: this.headers});
+    return this.http.get<Contact>(this.accessPointUrl + '/' + localStorage.getItem("userID") + '/' + id, {headers: this.headers});
   }
 
   public deleteContact(id: number): Observable<Contact>{
-    return this.http.delete<Contact>(this.accessPointUrl + '?id=' + id, {headers: this.headers});
+    return this.http.delete<Contact>(this.accessPointUrl + '/' + id, {headers: this.headers});
   }
 
   public addContact(contact: Contact): Observable<Contact>{
+    contact.User_id = parseInt(localStorage.getItem("userID")!);
     return this.http.post<Contact>(this.accessPointUrl, contact, {headers: this.headers});
   }
 
   public editContact(contact: Contact): Observable<Contact>{
-    return this.http.put<Contact>(this.accessPointUrl, contact, {headers: this.headers});
+    return this.http.put<Contact>(this.accessPointUrl + "/" + contact.Id, contact, {headers: this.headers});
   }
 }

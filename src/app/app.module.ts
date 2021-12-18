@@ -22,12 +22,15 @@ import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { AddContactComponent } from './add-contact/add-contact.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'account', component: AccountComponent },
   { path: 'card', component: CardListComponent },
   { path: 'contact', component: ContactListComponent },
+  { path: 'contact/edit/:id', component: AddContactComponent },
+  { path: 'contact/add', component: AddContactComponent },
   { path: 'loan', component: LoanListComponent },
   { path: 'transactionForm', component: TransactionFormComponent },
   { path: 'account', component: LeftProfilComponent, outlet: "outlet1" },
@@ -54,6 +57,7 @@ const appRoutes: Routes = [
     TransactionFormComponent,
     FooterComponent,
     HomeComponent,
+    AddContactComponent,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes),FormsModule,ReactiveFormsModule],
   providers: [CookieService],

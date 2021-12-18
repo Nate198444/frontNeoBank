@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     this.token$.subscribe(
       token => {
         this.cookieService.set("token", token.Token);
+        localStorage.setItem("userID", token.User_Id.toString())
         this.closebutton.nativeElement.click();
       },
       err => {
