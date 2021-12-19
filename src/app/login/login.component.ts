@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 import { TokenWallet } from '../token-wallet';
 import { User } from '../user';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,16 +12,18 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   @ViewChild('closebutton') closebutton: any;
   token$!: Observable<TokenWallet>;
   user: User = {
     Username: "",
     Password: ""
   }
-  @Output() errorMessage: string = "";
+  errorMessage: string = "";
+  @Output() refreshNavbar = new EventEmitter<any>();
 
 
-  constructor(private api: AuthenticationService, private cookieService: CookieService) {
+  constructor(private api: AuthenticationService, private cookie: CookieService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -33,9 +36,11 @@ export class LoginComponent implements OnInit {
 
     this.token$.subscribe(
       token => {
-        this.cookieService.set("token", token.Token);
+        this.cookie.set("token", token.Token);
         localStorage.setItem("userID", token.User_Id.toString())
+        localStorage.setItem("tokenID", token.Id.toString())
         this.closebutton.nativeElement.click();
+        this.refreshNavbar.emit()
       },
       err => {
         this.errorMessage = "Mauvaise combinaison de pseudo/mot de passe"
@@ -43,4 +48,14 @@ export class LoginComponent implements OnInit {
     );
 
   }
+
+  public disconnectUser() {
+
+    this.api.disconnect().subscribe()
+    this.cookie.deleteAll()
+    this.router.navigate(['home'])
+    this.refreshNavbar.emit()
+
+  }
+
 }

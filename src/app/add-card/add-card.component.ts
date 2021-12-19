@@ -9,6 +9,7 @@ import { CardService } from '../card.service';
   templateUrl: './add-card.component.html',
   styleUrls: ['./add-card.component.css']
 })
+
 export class AddCardComponent implements OnInit {
   card: Card = <Card>{}
   card$!: Observable<Card>;
@@ -21,5 +22,6 @@ export class AddCardComponent implements OnInit {
 
   public addCard(){
     this.api.addCard(this.card).subscribe();
+    this.router.navigate(['card'])
   }
 }

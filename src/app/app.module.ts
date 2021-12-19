@@ -60,8 +60,9 @@ const appRoutes: Routes = [
     FooterComponent,
     HomeComponent,
     AddContactComponent,
+    AddCardComponent
   ],
-  imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes),FormsModule,ReactiveFormsModule],
+  imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes), FormsModule,ReactiveFormsModule],
   providers: [CookieService],
   bootstrap: [AppComponent],
 })

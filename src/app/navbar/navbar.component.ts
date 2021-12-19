@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  isConnected!: boolean
+
+  constructor(private cookie: CookieService) { }
 
   ngOnInit(): void {
+
+    if(this.cookie.check("token")){
+      this.isConnected = true
+    } else {
+      this.isConnected = false
+    }
+
+  }
+
+  public refreshNavbar(){
+    if(this.cookie.check("token")){
+      this.isConnected = true
+    } else {
+      this.isConnected = false
+    }
   }
 
 }
