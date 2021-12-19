@@ -14,7 +14,7 @@ export class ContactListComponent implements OnInit {
   alphabet = ['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z']
   contacts$!: Observable<Contact[]>;
   filteredContacts$!: Observable<Contact[]>;
-  constructor(private api: ContactService, private router: Router, private cookie: CookieService) { }
+  constructor(private api: ContactService, private cookie: CookieService) { }
 
   ngOnInit(): void {
     this.contacts$ = this.api.getAllContact(parseInt(localStorage.getItem("userID")!));
@@ -25,11 +25,6 @@ export class ContactListComponent implements OnInit {
     this.filteredContacts$ = this.contacts$.pipe(
       map(contacts => contacts.filter(contact => contact.Name.startsWith(letter) || contact.Name.startsWith(letter.toLowerCase())))
     )
-  }
-
-
-  public goToAddContact(){
-    this.router.navigate(['addContact']);
   }
 
 }

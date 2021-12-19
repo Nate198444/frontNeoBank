@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   @Output() errorMessage: string = "";
 
 
-  constructor(private api: AuthenticationService, private router: Router,  private cookieService: CookieService) {
+  constructor(private api: AuthenticationService, private cookieService: CookieService) {
   }
 
   ngOnInit(): void {
