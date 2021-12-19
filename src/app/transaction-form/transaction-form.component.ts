@@ -14,6 +14,10 @@ export class TransactionFormComponent implements OnInit {
 
   private subscription!: Subscription;
 
+  errorMessageCardNumber: String = ""
+  errorMessageAmount: String = ""
+  errorMessageNote: String = ""
+
   newTransaction: Transfer = {
     Card_Id: -1,
     User_Id: -1,
@@ -27,9 +31,10 @@ export class TransactionFormComponent implements OnInit {
   tbAccounts: string[] = ['Compte courant', 'Compte epargne'];
   tbBeneficiaries: string[] = ['Nathan', 'Bouby', 'Nolan', 'Lionel'];
 
-  constructor(private api: TransferService,
+  constructor(private apiTransfer: TransferService,
     private router: Router,
-    private activatedRouted: ActivatedRoute) { }
+    private activatedRouted: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -41,21 +46,26 @@ export class TransactionFormComponent implements OnInit {
     this.showFree = !this.showFree;
   }
 
+  checkForm() {
+    if (this.newTransaction.CardNumber.length != 16) this.errorMessageCardNumber = "Le numéro de carte doit contenir 16 caractères ! "
+    if (this.newTransaction.Amount <= 0) this.errorMessageAmount = "Le montant doit être supérieur à 0 ! "
+    if (this.newTransaction.Note.length > 255) this.errorMessageNote = "La note doit contenir moins de 255 caractères ! "
+    else if (this.newTransaction.Note.length <=0) this.errorMessageNote = "La note doit contenir au moins 1 caractère ! "
+  }
+
   saveTransaction() {
-    /*const saveTransaction$: Observable<Transfer> = this.api.addTransfer(this.newTransaction);
+    const saveTransaction$: Observable<Transfer> = this.apiTransfer.addTransfer(this.newTransaction);
     const subscription = saveTransaction$.subscribe((transaction) => {
       this.newTransaction = {
-        id: -1,
-        cardId: -1,
-        userId: -1,
-        amount: 0,
-        cardNumber: "",
-        note: "",
+        Card_Id: -1,
+        User_Id: -1,
+        Amount: 0,
+        CardNumber: "",
+        Note: "",
       };
       subscription.unsubscribe();
       this.router.navigate(['home']);
-    });*/
-    console.log(this.newTransaction);
-    this.api.addTransfer(this.newTransaction).subscribe();
+    });
+    // this.apiTransfer.addTransfer(this.newTransaction).subscribe();
   }
 }

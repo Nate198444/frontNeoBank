@@ -16,3 +16,9 @@ textarea {
 .final {
   margin-top: auto;
 }
+
+p{
+    color: red;
+    font-size: 15px;
+}
+

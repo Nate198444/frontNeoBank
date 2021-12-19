@@ -4,8 +4,10 @@
       <div class="col-md-6 spacing input-group-lg">
         <select name="accounts"
                 id="account"
-                class="form-control rounded-pill mt-5">
-          <option *ngFor="let account of tbAccounts" [value]="account" ng-model="newTransaction.cardId">
+                class="form-control rounded-pill mt-5"
+                placeholder="Cartes"
+                [(ngModel)]="newTransaction.Card_Id" [ngModelOptions]="{ standalone: true }">
+          <option *ngFor="let account of tbAccounts" [value]="1" >
             {{ account }}
           </option>
         </select>
@@ -27,10 +29,11 @@
       <div class="col-md-6 spacing input-group-lg">
         <select name="beneficiaries"
                 id="beneficiaries"
-                class="form-control rounded-pill">
+                class="form-control rounded-pill"
+                [(ngModel)]="newTransaction.User_Id" [ngModelOptions]="{ standalone: true }">
           <option value="">Liste des bénéficiaires</option>
 
-          <option *ngFor="let benef of tbBeneficiaries" [value]="benef">
+          <option *ngFor="let benef of tbBeneficiaries" [value]="1">
             {{ benef }}
           </option>
         </select>
@@ -67,8 +70,11 @@
                name="cardNumber"
                type="text"
                class="form-control rounded-pill"
-               placeholder="Numéro de compte" />
+               placeholder="Numéro de compte"
+               [(ngModel)]="newTransaction.CardNumber" [ngModelOptions]="{ standalone: true }"/>
+        <p>{{errorMessageCardNumber}}</p>
       </div>
+      
     </div>
     <div class="form-group col-md-6">
       <div class="col-md-6 spacing">
@@ -80,7 +86,8 @@
                  name="amount"
                  placeholder="Montant"
                  class="form-control rounded-end"
-                 ng-model="newtransaction.amount" />
+                 [(ngModel)]="newTransaction.Amount" [ngModelOptions]="{ standalone: true }" />
+          <p>{{errorMessageAmount}}</p>
         </div>
       </div>
     </div>
@@ -118,7 +125,8 @@
                   id="communication"
                   rows="10"
                   name="communication"
-                  ng-model="newTransaction.note"></textarea>
+                  [(ngModel)]="newTransaction.Note" [ngModelOptions]="{ standalone: true }"></textarea>
+        <p>{{errorMessageNote}}</p>
       </div>
     </div>
   </div>
@@ -130,7 +138,8 @@
                placeholder="+++ _ _ _ /_ _ _ _ /_ _ _ _ +++"
                class="form-control rounded-pill"
                name="structured"
-               ng-model="newTransaction.note" />
+               [(ngModel)]="newTransaction.Note" [ngModelOptions]="{ standalone: true }" />
+        <p>{{errorMessageNote}}</p>
       </div>
     </div>
   </div>
@@ -142,7 +151,7 @@
                class="rounded-pill green"
                name="Confirmer"
                value="Confirmer Virement"
-               (click)="saveTransaction()"/>
+               (click)="checkForm()"/>
       </div>
     </div>
   </div>
