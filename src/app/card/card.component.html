@@ -8,7 +8,7 @@
         <div class="input"><input type="radio" name="card" id="check" /></div>
       </div>
     </label>
-    <div class="btnDelete mb-4 text-center">
+    <div class="btnDelete mb-4 text-center" (click)="deleteCard()">
       <img src="assets/img/bin.png" class="rounded float-rightt" alt="" />
     </div>
     <label class="d-block">
@@ -17,7 +17,7 @@
           <p
             class="mt-auto mb-6 text-white fw-bold d-flex align-items-center justify-content-between"
           >
-            **** **** **** 4321
+            {{card.CardNumber}}
           </p>
         </div>
       </div>

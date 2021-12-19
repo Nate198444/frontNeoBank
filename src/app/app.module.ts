@@ -20,14 +20,16 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AddContactComponent } from './add-contact/add-contact.component';
+import { AddCardComponent } from './add-card/add-card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'account', component: AccountComponent },
   { path: 'card', component: CardListComponent },
+  { path: 'card/add', component: AddCardComponent },
   { path: 'contact', component: ContactListComponent },
   { path: 'contact/edit/:id', component: AddContactComponent },
   { path: 'contact/add', component: AddContactComponent },

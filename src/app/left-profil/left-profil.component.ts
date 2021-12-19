@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable, observable } from 'rxjs';
+import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-left-profil',
@@ -6,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./left-profil.component.css']
 })
 export class LeftProfilComponent implements OnInit {
-
-  constructor() { }
+  user:User = <User>{}
+  constructor(private api: UserService) { }
 
   ngOnInit(): void {
+    this.api.getUser(0).subscribe(user =>this.user = user);
   }
 
 }

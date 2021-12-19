@@ -1,11 +1,9 @@
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
-import { catchError, isEmpty, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 import { TokenWallet } from '../token-wallet';
 import { User } from '../user';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
-import { of } from "rxjs";
 
 @Component({
   selector: 'app-login',
