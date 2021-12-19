@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, observable } from 'rxjs';
+import { Card } from '../card';
+import { CardService } from '../card.service';
 
 @Component({
   selector: 'app-card-list',
@@ -6,10 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-list.component.css']
 })
 export class CardListComponent implements OnInit {
+  cards$!: Observable<Card[]>;
 
-  constructor() { }
+  constructor(private api: CardService,private router: Router) { }
 
   ngOnInit(): void {
+    this.cards$ = this.api.getCardsByUser(0);
+    //todo Get items a faire apres le push de nathan
+  }
+  
+  public goToAddCard(){
+    this.router.navigate(['addCard']);
   }
 
 }

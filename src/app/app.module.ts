@@ -20,11 +20,14 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
+import { AddCardComponent } from './add-card/add-card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'account', component: AccountComponent },
   { path: 'card', component: CardListComponent },
+  { path: 'card/add', component: AddCardComponent },
   { path: 'contact', component: ContactListComponent },
   { path: 'loan', component: LoanListComponent },
   { path: 'transactionForm', component: TransactionFormComponent },
@@ -52,8 +55,9 @@ const appRoutes: Routes = [
     TransactionFormComponent,
     FooterComponent,
     HomeComponent,
+    AddCardComponent,
   ],
-  imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes)],
+  imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes),FormsModule,ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TestService } from '../test.service';
 import { User } from '../user';
 
 @Component({
@@ -12,21 +11,8 @@ export class LoginComponent implements OnInit {
 
   users$!: Observable<User[]>;
 
-  constructor(private api: TestService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.users$ = this.api.get();
-    this.getUsers();
-  }
-
-  /**
-   * getUsers
-   */
-  public getUsers() {
-    this.users$.subscribe(user => {
-      console.log(user);
-
-    })
-
   }
 }

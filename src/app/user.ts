@@ -1,16 +1,16 @@
 export interface User {
-  id: number;
-  lastname: string;
-  firstname: string;
-  phoneNumber: string;
-  birthday: string;
-  mail: string;
-  add_street: string;
-  add_number: string;
-  add_locality: string;
-  add_postalCode: string;
-  add_country: string;
-  username: string;
-  password: string;
-  isDeleted: boolean;
+  Id?: number;
+  LastName?: string;
+  FirstName?: string;
+  PhoneNumber?: string;
+  Birthday?: string;
+  Mail?: string;
+  Add_street?: string;
+  Add_number?: string;
+  Add_locality?: string;
+  Add_postalCode?: string;
+  Add_country?: string;
+  Username: string;
+  Password: string;
+  IsDeleted?: boolean;
 }
