@@ -1,13 +1,13 @@
 <form>
-  <div class="row m-0 m-0">
+  <div class="form-goup row">
     <div class="form-group col-md-6">
       <div class="col-md-6 spacing input-group-lg">
-        <select
-          name="accounts"
-          id="account"
-          class="form-control rounded-pill mt-5"
-        >
-          <option *ngFor="let account of tbAccounts" [value]="account">
+        <select name="accounts"
+                id="account"
+                class="form-control rounded-pill mt-5"
+                placeholder="Cartes"
+                [(ngModel)]="newTransaction.Card_Id" [ngModelOptions]="{ standalone: true }">
+          <option *ngFor="let account of tbAccounts" [value]="1" >
             {{ account }}
           </option>
         </select>
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="row m-0">
+  <div class="form-goup row">
     <div class="form-group col-md-6">
       <div class="col-md-6 spacing">
         <input type="checkbox" name="transfer" value="propre" /> Virement propre
@@ -24,17 +24,16 @@
     </div>
   </div>
 
-  <div class="row m-0">
+  <div class="form-goup row">
     <div class="form-group col-md-6">
       <div class="col-md-6 spacing input-group-lg">
-        <select
-          name="beneficiaries"
-          id="beneficiaries"
-          class="form-control rounded-pill"
-        >
+        <select name="beneficiaries"
+                id="beneficiaries"
+                class="form-control rounded-pill"
+                [(ngModel)]="newTransaction.User_Id" [ngModelOptions]="{ standalone: true }">
           <option value="">Liste des bénéficiaires</option>
 
-          <option *ngFor="let benef of tbBeneficiaries" [value]="benef">
+          <option *ngFor="let benef of tbBeneficiaries" [value]="1">
             {{ benef }}
           </option>
         </select>
@@ -42,19 +41,17 @@
     </div>
   </div>
 
-  <div class=" row m-0">
+  <div class="form-goup row">
     <div class="form-group col-6">
       <div class="col-md-6 spacing input-group-lg">
-        <input
-          id="card-holder"
-          name="nom"
-          type="text"
-          class="form-control rounded-pill"
-          placeholder="Nom"
-        />
+        <input id="card-holder"
+               name="nom"
+               type="text"
+               class="form-control rounded-pill"
+               placeholder="Nom" />
       </div>
     </div>
-    <div class="form-group col-6">
+    <!--<div class="form-group col-6">
       <div class="col-md-6 spacing input-group-lg">
         <input
           id="date"
@@ -64,19 +61,20 @@
           placeholder="Date"
         />
       </div>
-    </div>
+    </div>-->
   </div>
-  <div class=" row m-0">
+  <div class="form-goup row">
     <div class="form-group col-md-6">
       <div class="col-md-6 spacing input-group-lg">
-        <input
-          id="card-number"
-          name="cardNumber"
-          type="text"
-          class="form-control rounded-pill"
-          placeholder="Numéro de compte"
-        />
+        <input id="card-number"
+               name="cardNumber"
+               type="text"
+               class="form-control rounded-pill"
+               placeholder="Numéro de compte"
+               [(ngModel)]="newTransaction.CardNumber" [ngModelOptions]="{ standalone: true }"/>
+        <p>{{errorMessageCardNumber}}</p>
       </div>
+      
     </div>
     <div class="form-group col-md-6">
       <div class="col-md-6 spacing">
@@ -84,18 +82,18 @@
           <div class="input-group-prepend input-group-lg">
             <span class="input-group-text">€</span>
           </div>
-          <input
-            type="text"
-            name="amount"
-            placeholder="Montant"
-            class="form-control rounded-end"
-          />
+          <input type="text"
+                 name="amount"
+                 placeholder="Montant"
+                 class="form-control rounded-end"
+                 [(ngModel)]="newTransaction.Amount" [ngModelOptions]="{ standalone: true }" />
+          <p>{{errorMessageAmount}}</p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row m-0">
+  <div class="form-goup row">
     <div class="form-group col-md-6">
       <div class="col-md-6 spacing">
         <input type="checkbox" name="save" value="saveBenef" /> Sauvegarder
@@ -104,59 +102,56 @@
     </div>
   </div>
 
-  <div class="row m-0">
+  <div class="form-goup row">
     <div class="form-group col-md-6">
       <div class="col-md-6 spacing">
         <div class="d-inline-block me-1">Structurée</div>
         <div class="form-check form-switch d-inline-block">
-          <input
-            type="checkbox"
-            class="form-check-input green"
-            style="cursor: pointer"
-            (click)="showCommunication()"
-          />
+          <input type="checkbox"
+                 class="form-check-input green"
+                 style="cursor: pointer"
+                 (click)="showCommunication()" />
           <label for="site_state" class="form-check-label"> Libre</label>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row m-0" *ngIf="showFree">
+  <div class="form-goup row" *ngIf="showFree">
     <div class="form-group col-md-12">
       <div class="col-md-9 spacing">
-        <textarea
-          placeholder="Communication"
-          class="form-control"
-          id="communication"
-          row m-0s="10"
-          name="communication"
-        ></textarea>
+        <textarea placeholder="Communication"
+                  class="form-control"
+                  id="communication"
+                  rows="10"
+                  name="communication"
+                  [(ngModel)]="newTransaction.Note" [ngModelOptions]="{ standalone: true }"></textarea>
+        <p>{{errorMessageNote}}</p>
       </div>
     </div>
   </div>
 
-  <div class="row m-0" *ngIf="showStruct">
+  <div class="form-goup row" *ngIf="showStruct">
     <div class="form-group col-md-6">
       <div class="col-md-6 spacing">
-        <input
-          type="text"
-          placeholder="+++ _ _ _ /_ _ _ _ /_ _ _ _ +++"
-          class="form-control rounded-pill"
-          name="structured"
-        />
+        <input type="text"
+               placeholder="+++ _ _ _ /_ _ _ _ /_ _ _ _ +++"
+               class="form-control rounded-pill"
+               name="structured"
+               [(ngModel)]="newTransaction.Note" [ngModelOptions]="{ standalone: true }" />
+        <p>{{errorMessageNote}}</p>
       </div>
     </div>
   </div>
 
-  <div class="row m-0">
+  <div class="form-goup row">
     <div class="form-group col-md-12">
       <div class="d-flex justify-content-center final">
-        <input
-          type="button"
-          class="rounded-pill green"
-          name="Confirmer"
-          value="Confirmer Virement"
-        />
+        <input type="button"
+               class="rounded-pill green"
+               name="Confirmer"
+               value="Confirmer Virement"
+               (click)="checkForm()"/>
       </div>
     </div>
   </div>
