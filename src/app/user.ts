@@ -10,7 +10,7 @@ export interface User {
   Add_locality?: string;
   Add_postalCode?: string;
   Add_country?: string;
-  Username: string;
-  Password: string;
+  Username?: string;
+  Password?: string;
   IsDeleted?: boolean;
 }

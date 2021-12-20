@@ -19,8 +19,11 @@ export class UserService {
     });
   }
 
-
   public getUser(idUser: number):Observable<User>{
     return this.http.get<User>(this.accessPointUrl + '/' + idUser,{headers: this.headers});
+  }
+
+  public addUser(user: User): Observable<User>{
+    return this.http.post<User>(this.accessPointUrl, user)
   }
 }

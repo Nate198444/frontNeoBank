@@ -24,6 +24,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -60,7 +61,8 @@ const appRoutes: Routes = [
     FooterComponent,
     HomeComponent,
     AddContactComponent,
-    AddCardComponent
+    AddCardComponent,
+    RegisterComponent
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes), FormsModule,ReactiveFormsModule],
   providers: [CookieService],

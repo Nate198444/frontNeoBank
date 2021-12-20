@@ -1,0 +1,91 @@
+<!-- Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Inscription</h5>
+        <button type="button" #closebutton class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class="col-8 mx-auto text-center" (ngSubmit)="registerUser()">
+        <div class="modal-body">
+
+            <div style="background-color: #4B6587;">
+              </div>
+
+            <div class="form-floating mt-2">
+              <input type="mail" class="form-control"  placeholder="Adresse Mail" [(ngModel)]="user.Mail" [ngModelOptions]="{ standalone: true }">
+              <label for="floatingPassword">Adresse Mail</label>
+              <p class="text-danger">{{errorMail}}</p>
+            </div>
+            <div class="row mt-2">
+              <div class="form-floating col-6">
+                <input type="text" class="form-control"  placeholder="Pseudo" [(ngModel)]="user.Username" [ngModelOptions]="{ standalone: true }">
+                <label for="floatingInput">Pseudo</label>
+                <p class="text-danger">{{errorPseudo}}</p>
+              </div>
+              <div class="form-floating col-6">
+                <input type="password" class="form-control"  placeholder="Mot de passe" [(ngModel)]="user.Password" [ngModelOptions]="{ standalone: true }">
+                <label for="floatingPassword">Mot de passe</label>
+                <p class="text-danger">{{errorPwd}}</p>
+              </div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="form-floating col-6">
+                <input type="text" class="form-control"  placeholder="Nom" [(ngModel)]="user.LastName" [ngModelOptions]="{ standalone: true }">
+                <label for="floatingPassword">Nom</label>
+                <p class="text-danger">{{errorLastName}}</p>
+              </div>
+              <div class="form-floating col-6">
+                <input type="text" class="form-control"  placeholder="Prénom" [(ngModel)]="user.FirstName" [ngModelOptions]="{ standalone: true }">
+                <label for="floatingPassword">Prénom</label>
+                <p class="text-danger">{{errorFirstName}}</p>
+              </div>
+            </div>
+            <div class="form-floating mt-2">
+              <input type="text" class="form-control" placeholder="Numéro de téléphone" [(ngModel)]="user.PhoneNumber" [ngModelOptions]="{ standalone: true }">
+              <label for="floatingPassword">Numéro de téléphone</label>
+              <p class="text-danger">{{errorPhone}}</p>
+            </div>
+            <div class="form-floating mt-2">
+              <input type="date" class="form-control"  placeholder="Date de naissance" [(ngModel)]="user.Birthday" [ngModelOptions]="{ standalone: true }">
+              <label for="floatingPassword">Date de naissance</label>
+              <p class="text-danger">{{errorBirthday}}</p>
+            </div>
+            <div class="row mt-2">
+              <div class="form-floating col-6">
+                <input type="text" class="form-control"  placeholder="Rue" [(ngModel)]="user.Add_street" [ngModelOptions]="{ standalone: true }">
+                <label for="floatingPassword">Rue</label>
+                <p class="text-danger">{{errorStreet}}</p>
+              </div>
+              <div class="form-floating col-6">
+                <input type="text" class="form-control" placeholder="Numéro" [(ngModel)]="user.Add_number" [ngModelOptions]="{ standalone: true }">
+                <label for="floatingPassword">Numéro</label>
+                <p class="text-danger">{{errorNumber}}</p>
+              </div>
+            </div>
+            <div class="form-floating mt-2">
+              <input type="text" class="form-control" placeholder="Ville" [(ngModel)]="user.Add_locality" [ngModelOptions]="{ standalone: true }">
+              <label for="floatingPassword">Ville</label>
+              <p class="text-danger">{{errorCity}}</p>
+            </div>
+            <div class="form-floating mt-2">
+              <input type="text" class="form-control" placeholder="Code postal" [(ngModel)]="user.Add_postalCode" [ngModelOptions]="{ standalone: true }">
+              <label for="floatingPassword">Code postal</label>
+              <p class="text-danger">{{errorPostalCode}}</p>
+            </div>
+            <div class="form-floating mt-2">
+              <input type="text" class="form-control"  placeholder="Pays" [(ngModel)]="user.Add_country" [ngModelOptions]="{ standalone: true }">
+              <label for="floatingPassword">Pays</label>
+              <p class="text-danger">{{errorCountry}}</p>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <p class="text-danger">{{errorOther}}</p>
+          <button type="button" class="btn btn-primary mx-auto" (click)="registerUser()" data-dismiss="modal">Connexion</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

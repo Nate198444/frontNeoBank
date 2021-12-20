@@ -12,7 +12,6 @@ import { User } from './user';
 export class AuthenticationService {
 
   private headers: HttpHeaders;
-  private tokenHeader: HttpHeaders
   private accessPointUrl: string = environment.urlPicsou + '/Authentication';
 
   constructor(private http: HttpClient, private cookie: CookieService) {
@@ -20,9 +19,6 @@ export class AuthenticationService {
       'Content-Type': 'application/json; charset=utf-8;',
       'Accept' : 'application/json'
     });
-    this.tokenHeader = new HttpHeaders({
-      'x-auth-token': this.cookie.get("token")
-    })
   }
 
   public connect(user: User): Observable<TokenWallet>{
@@ -30,6 +26,7 @@ export class AuthenticationService {
   }
 
   public disconnect(): Observable<TokenWallet>{
-    return this.http.delete<TokenWallet>(this.accessPointUrl + "/" + localStorage.getItem("tokenID"), {headers: this.tokenHeader });
+
+    return this.http.delete<TokenWallet>(this.accessPointUrl + "/" + localStorage.getItem("tokenID"), {headers: new HttpHeaders({'x-auth-token': this.cookie.get("token")}) });
   }
 }
