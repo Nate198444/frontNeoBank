@@ -1,8 +1,8 @@
-<div class="container mt-3">
+<div *ngFor="let item of loanList$|async" class="container mt-3">
   <div class="row py-2">
     <div class="col-auto">
       <p class="fw-lighter m-2">Description</p>
-      <p class="fw-normal m-2">Emprunt pour une nouvelle voiture</p>
+      <p class="fw-normal m-2">Note nulle</p>
     </div>
     <div class="col-auto">
       <p class="fw-lighter m-2 text-success">Emprunt en cours</p>
@@ -11,25 +11,25 @@
   <div class="row py-2">
     <div class="col-auto">
       <p class="fw-lighter m-2">Montant de l'emprunt</p>
-      <p class="fw-normal m-2">23 599,00€</p>
+      <p class="fw-normal m-2">{{item.Amount}}</p>
     </div>
     <div class="col-auto">
       <p class="fw-lighter m-2">Date de début</p>
-      <p class="fw-normal m-2">01/01/2021</p>
+      <p class="fw-normal m-2">{{item.StartDate | date}}</p>
     </div>
     <div class="col-auto">
       <p class="fw-lighter m-2">Montant mensuel</p>
-      <p class="fw-normal m-2">589,87€</p>
+      <p class="fw-normal m-2">{{item.Mensuality}}</p>
     </div>
   </div>
   <div class="row py-2">
     <div class="col-auto">
       <p class="fw-lighter m-2">Taux d'intérêt</p>
-      <p class="fw-normal m-2">1,5%</p>
+      <p class="fw-normal m-2">{{item.InterestRate}} %</p>
     </div>
     <div class="col-auto">
       <p class="fw-lighter m-2">Date de fin</p>
-      <p class="fw-normal m-2">01/01/2027</p>
+      <p class="fw-normal m-2">{{item.EndDate | date}}</p>
     </div>
   </div>
 </div>

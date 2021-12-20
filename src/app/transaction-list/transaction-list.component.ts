@@ -16,7 +16,7 @@ export class TransactionListComponent implements OnInit {
   constructor(private service:TransferService) { }
 
   ngOnInit(): void {
-    this.transfersList$ = this.service.getTransfersByCard(5);
+    this.transfersList$ = this.service.getTransfersByCard(5/*parseInt(localStorage.getItem("cardID")!)*/);
   }
 
 }
