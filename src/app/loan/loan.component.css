@@ -1,4 +1,7 @@
-.container-lg{
+.container{
   background: linear-gradient(70deg, white, lightgrey);
   border-radius: 25px;
+  width: fit-content;
+  margin-left: 0%;
+  margin-right: 0%;
 }

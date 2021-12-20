@@ -1,5 +1,5 @@
-.container {
+.container-fluid {
   background-color: #efefef;
   height: 100%;
-  max-width: 100%;
+  width: 100%;
 }
