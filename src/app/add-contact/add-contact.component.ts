@@ -11,14 +11,15 @@ import { ContactService } from '../contact.service';
 })
 export class AddContactComponent implements OnInit {
   contact: Contact = <Contact>{}
-  contact$!: Observable<Contact>;
   error = {
     name: "",
-    cardNumber: "",
-    note: ""
+    cardNumber: ""
   };
   isModif = false
   title = "Nouveau contact"
+  buttonText = "Ajouter"
+  regexName = new RegExp('^[a-zA-Zéèëêïî\\-_]{2,25}$');
+  regexCard = new RegExp('^\\d{16}$');
 
   constructor(private api: ContactService, private route: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -30,20 +31,32 @@ export class AddContactComponent implements OnInit {
           this.contact = contact;
           this.isModif = true
           this.title = "Modification du contact"
+          this.buttonText = "Modifier"
         });
       }
     });
   }
 
   public addContact() {
-    if(this.isModif)
-      this.contact$ = this.api.editContact(this.contact);
-    else
-      this.contact$ = this.api.addContact(this.contact);
-    this.contact$.subscribe(
-      contact => { this.route.navigate(['contact']) },
-      err => { this.error.cardNumber = "Le numéro de carte n'est pas correct" }
-    );
+    this.error.cardNumber = ""
+    this.error.name = ""
+    var countError = 0
+    if(!this.regexName.test(this.contact.Name)){
+      this.error.name = "Nom invalide"
+      countError++
+    }
+    if(!this.regexCard.test(this.contact.CardNumber)){
+      this.error.cardNumber = "Numéro de carte invalide"
+      countError++
+    }
+    if(countError == 0){
+      if(this.isModif){
+        this.api.editContact(this.contact).subscribe()
+      } else {
+        this.api.addContact(this.contact).subscribe()
+      }
+      this.route.navigate(['/profil/contact'])
+    }
   }
 
 

@@ -10,15 +10,11 @@ import { UserService } from '../user.service';
 })
 export class LeftProfilComponent implements OnInit {
   user:User = <User>{}
-  @Output() disconnect = new EventEmitter<any>();
   constructor(private api: UserService) { }
 
   ngOnInit(): void {
     this.api.getUser(parseInt(localStorage.getItem("userID")!)).subscribe(user =>this.user = user);
   }
 
-  public disconnectUser(){
-    this.disconnect.emit()
-  }
 
 }

@@ -19,8 +19,4 @@ export class CardListComponent implements OnInit {
     //todo Get items a faire apres le push de nathan
   }
 
-  public goToAddCard(){
-    this.router.navigate(['addCard']);
-  }
-
 }

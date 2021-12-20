@@ -25,18 +25,22 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { PanelConnectedComponent } from './panel-connected/panel-connected.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'account', component: AccountComponent },
-  { path: 'card', component: CardListComponent },
-  { path: 'card/add', component: AddCardComponent },
-  { path: 'contact', component: ContactListComponent },
-  { path: 'contact/edit/:id', component: AddContactComponent },
-  { path: 'contact/add', component: AddContactComponent },
-  { path: 'loan', component: LoanListComponent },
-  { path: 'transactionForm', component: TransactionFormComponent },
-  { path: 'account', component: LeftProfilComponent, outlet: "outlet1" },
+  {path: 'profil', component: PanelConnectedComponent, children: [
+    { path: '', redirectTo: '/profil/account', pathMatch: 'full' },
+    { path: 'account', component: AccountComponent },
+    { path: 'card', component: CardListComponent },
+    { path: 'card/add', component: AddCardComponent },
+    { path: 'contact', component: ContactListComponent },
+    { path: 'contact/edit/:id', component: AddContactComponent },
+    { path: 'contact/add', component: AddContactComponent },
+    { path: 'loan', component: LoanListComponent },
+    { path: 'transactionForm', component: TransactionFormComponent },
+    { path: 'account', component: LeftProfilComponent, outlet: "outlet1" },
+  ]},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
@@ -62,7 +66,8 @@ const appRoutes: Routes = [
     HomeComponent,
     AddContactComponent,
     AddCardComponent,
-    RegisterComponent
+    RegisterComponent,
+    PanelConnectedComponent
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes), FormsModule,ReactiveFormsModule],
   providers: [CookieService],

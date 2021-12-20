@@ -1,13 +1,10 @@
-<div class="container nav">
+<div class="container ">
   <div class="row">
-    <app-navbar ></app-navbar>
+    <app-navbar (disconnect)="disconnectUser()"></app-navbar>
     <app-login (refreshNavbar)="refreshNavbar()"></app-login>
     <app-register></app-register>
   </div>
-  <div class="row panel">
-    <app-left-profil class="col-sm-3" (disconnect)="disconnectUser()"></app-left-profil>
-    <app-right-panel class="col-sm-9"></app-right-panel>
-  </div>
+  <router-outlet ></router-outlet>
   <div class="row">
     <app-footer></app-footer>
   </div>

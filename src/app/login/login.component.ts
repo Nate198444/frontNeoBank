@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("tokenID", token.Id.toString())
         this.closebutton.nativeElement.click();
         this.refreshNavbar.emit()
+        this.router.navigate(['/profil/account'])
       },
       err => {
         this.errorMessage = "Mauvaise combinaison de pseudo/mot de passe"
@@ -53,9 +54,8 @@ export class LoginComponent implements OnInit {
 
     this.api.disconnect().subscribe()
     this.cookie.deleteAll()
-    this.router.navigate(['home'])
     this.refreshNavbar.emit()
-
+    this.router.navigate(['home'])
   }
 
 }

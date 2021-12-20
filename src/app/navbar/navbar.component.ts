@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
   isConnected!: boolean
 
   constructor(private cookie: CookieService) { }
+  @Output() disconnect = new EventEmitter<any>();
 
   ngOnInit(): void {
 
@@ -28,6 +29,10 @@ export class NavbarComponent implements OnInit {
     } else {
       this.isConnected = false
     }
+  }
+
+  public disconnectUser(){
+    this.disconnect.emit()
   }
 
 }

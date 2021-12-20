@@ -3,6 +3,7 @@
   <div class="mb-3">
     <label for="name" class="form-label">Nom du contact</label>
     <input type="text" class="form-control" id="name" placeholder="Nom du contact" [(ngModel)]="contact.Name" [ngModelOptions]="{ standalone: true }">
+    <p class="text-danger">{{error.name}}</p>
   </div>
   <div class="mb-3">
     <label for="cardNumber" class="form-label">Numéro de carte</label>
@@ -13,6 +14,6 @@
     <label for="note" class="form-label">Note</label>
     <input type="text" class="form-control" id="note" placeholder="Collègue de travail" [(ngModel)]="contact.Note" [ngModelOptions]="{ standalone: true }">
   </div>
-  <button class="btn btn-primary" (click)="addContact()">Ajouter</button>
-  <button class="btn btn-secondary ms-2" routerLink="/contact">Retour</button>
+  <button class="btn btn-primary" (click)="addContact()">{{buttonText}}</button>
+  <button class="btn btn-secondary ms-2" routerLink="/profil/contact">Retour</button>
 </div>
