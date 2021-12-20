@@ -13,8 +13,12 @@ export class TransferService {
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
-      'x-auth-token': 'I2142BO84k6WvZx0J4gaug=='
+      'x-auth-token': 'D4x5PY9PcEGzEmtkA1YP4A=='
     });
+  }
+
+  getTransfersByCard(cardID:number): Observable<any> {
+    return this.http.get<Transfer>(this.accessPointUrl + "/" + cardID, { headers : this.headers });
   }
 
   addTransfer(transfer: Transfer): Observable<Transfer> {

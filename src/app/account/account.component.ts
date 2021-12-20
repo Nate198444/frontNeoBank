@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Card } from '../card';
+import { CardService } from '../card.service';
 
 @Component({
   selector: 'app-account',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  card$!: Observable<any>
+
+  constructor(private service:CardService) { }
 
   ngOnInit(): void {
+    this.card$ = this.service.getCardByUserAndCard(5)
   }
 
 }
