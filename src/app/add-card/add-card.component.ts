@@ -21,7 +21,6 @@ export class AddCardComponent implements OnInit {
   }
 
   public addCard(){
-    this.api.addCard(this.card).subscribe();
-    this.router.navigate(['/profil/card'])
+    this.api.addCard(this.card).subscribe(() => this.router.navigate(['/profil/card']));
   }
 }

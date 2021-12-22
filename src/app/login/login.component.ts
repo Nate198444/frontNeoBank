@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, timeout } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 import { TokenWallet } from '../token-wallet';
 import { User } from '../user';
@@ -31,10 +31,7 @@ export class LoginComponent implements OnInit {
 
   public connectUser() {
 
-    this.token$ = this.api.connect(this.user)
-
-
-    this.token$.subscribe(
+    this.api.connect(this.user).subscribe(
       token => {
         this.cookie.set("token", token.Token);
         localStorage.setItem("userID", token.User_Id.toString())
@@ -47,15 +44,16 @@ export class LoginComponent implements OnInit {
         this.errorMessage = "Mauvaise combinaison de pseudo/mot de passe"
       }
     );
-
   }
 
   public disconnectUser() {
 
-    this.api.disconnect().subscribe()
-    this.cookie.deleteAll()
-    this.refreshNavbar.emit()
-    this.router.navigate(['home'])
+    this.api.disconnect().subscribe(() => {
+      this.cookie.delete("token", '*/*', 'localhost')
+      localStorage.clear()
+      this.refreshNavbar.emit()
+      this.router.navigate(['home'])
+    })
   }
 
 }

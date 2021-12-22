@@ -19,17 +19,19 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
 import { TransactionComponent } from './transaction/transaction.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from "@angular/router";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { PanelConnectedComponent } from './panel-connected/panel-connected.component';
+import { SecurityGuard } from './security.guard';
+import { TokenInterceptor } from './token.interceptor';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  {path: 'profil', component: PanelConnectedComponent, children: [
+  {path: 'profil', component: PanelConnectedComponent, canActivate: [SecurityGuard], children: [
     { path: '', redirectTo: '/profil/account', pathMatch: 'full' },
     { path: 'account', component: AccountComponent },
     { path: 'card', component: CardListComponent },
@@ -70,7 +72,7 @@ const appRoutes: Routes = [
     PanelConnectedComponent
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes), FormsModule,ReactiveFormsModule],
-  providers: [CookieService],
+  providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

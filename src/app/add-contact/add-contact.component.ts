@@ -51,11 +51,14 @@ export class AddContactComponent implements OnInit {
     }
     if(countError == 0){
       if(this.isModif){
-        this.api.editContact(this.contact).subscribe()
+        this.api.editContact(this.contact).subscribe(
+          () => this.route.navigate(['/profil/contact']),
+          err => this.error.cardNumber = "Cette carte n'est pas attribuée")
       } else {
-        this.api.addContact(this.contact).subscribe()
+        this.api.addContact(this.contact).subscribe(
+          () => this.route.navigate(['/profil/contact']),
+          err => this.error.cardNumber = "Cette carte n'est pas attribuée")
       }
-      this.route.navigate(['/profil/contact'])
     }
   }
 

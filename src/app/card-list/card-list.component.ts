@@ -15,8 +15,12 @@ export class CardListComponent implements OnInit {
   constructor(private api: CardService,private router: Router) { }
 
   ngOnInit(): void {
-    this.cards$ = this.api.getCardsByUser(parseInt(localStorage.getItem("userID")!));
+    this.refreshCards()
     //todo Get items a faire apres le push de nathan
+  }
+
+  refreshCards(){
+    this.cards$ = this.api.getCardsByUser(parseInt(localStorage.getItem("userID")!));
   }
 
 }

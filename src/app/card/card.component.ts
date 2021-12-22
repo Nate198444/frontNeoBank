@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Card } from '../card';
 import { CardService } from '../card.service';
 
@@ -9,6 +9,7 @@ import { CardService } from '../card.service';
 })
 export class CardComponent implements OnInit {
   @Input() card!: Card
+  @Output() refreshCards = new EventEmitter<any>();
 
   constructor(private api:CardService) { }
 
@@ -16,7 +17,6 @@ export class CardComponent implements OnInit {
   }
 
   public deleteCard(){
-    this.api.deleteCard(this.card.Id!).subscribe();
-    location.reload();
+    this.api.deleteCard(this.card.Id!).subscribe(() => this.refreshCards.emit());
   }
 }
