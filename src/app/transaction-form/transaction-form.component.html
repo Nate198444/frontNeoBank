@@ -1,84 +1,50 @@
-<form>
-  <div class="form-goup row">
-    <div class="form-group col-md-6">
-      <div class="col-md-6 spacing input-group-lg">
-        <select name="accounts"
-                id="account"
-                class="form-control rounded-pill mt-5"
-                placeholder="Cartes"
-                [(ngModel)]="newTransaction.Card_Id" [ngModelOptions]="{ standalone: true }">
-          <option *ngFor="let account of tbAccounts" [value]="1" >
-            {{ account }}
-          </option>
-        </select>
-      </div>
+
+  <div class="row">
+    <div class="form-floating col-md-9 mt-5 spacing">
+      <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" [(ngModel)]="newTransaction.Card_Id" [ngModelOptions]="{ standalone: true }">
+        <option *ngFor="let card of cards$ | async" [value]="card.Id">
+          {{ card.CardNumber }}
+        </option>
+      </select>
+      <label for="floatingCard">Liste des cartes</label>
     </div>
   </div>
 
-  <div class="form-goup row">
-    <div class="form-group col-md-6">
-      <div class="col-md-6 spacing">
-        <input type="checkbox" name="transfer" value="propre" /> Virement propre
-        ?
-      </div>
+  <div class="row">
+    <div class="form-floating col-md-9 spacing">
+      <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" [(ngModel)]="newTransaction.User_Id" [ngModelOptions]="{ standalone: true }" (ngModelChange)="getSelectedContact($event)">
+        <option *ngFor="let contact of contacts$ | async" [value]="contact.Id">
+          {{ contact.Name }}
+        </option>
+      </select>
+      <label for="floatingConatact">Liste des contacts</label>
     </div>
   </div>
 
-  <div class="form-goup row">
-    <div class="form-group col-md-6">
-      <div class="col-md-6 spacing input-group-lg">
-        <select name="beneficiaries"
-                id="beneficiaries"
-                class="form-control rounded-pill"
-                [(ngModel)]="newTransaction.User_Id" [ngModelOptions]="{ standalone: true }">
-          <option value="">Liste des bénéficiaires</option>
-
-          <option *ngFor="let benef of tbBeneficiaries" [value]="1">
-            {{ benef }}
-          </option>
-        </select>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-goup row">
-    <div class="form-group col-6">
-      <div class="col-md-6 spacing input-group-lg">
+  <div class="row">
+      <div class="col-md-9 spacing">
         <input id="card-holder"
                name="nom"
                type="text"
-               class="form-control rounded-pill"
-               placeholder="Nom" />
+               class="form-control rounded"
+               placeholder="Nom"
+               [(ngModel)]="contact.Name" [ngModelOptions]="{ standalone: true }" />
       </div>
-    </div>
-    <!--<div class="form-group col-6">
-      <div class="col-md-6 spacing input-group-lg">
-        <input
-          id="date"
-          name="date"
-          type="datetime-local"
-          class="form-control rounded-pill"
-          placeholder="Date"
-        />
-      </div>
-    </div>-->
   </div>
-  <div class="form-goup row">
-    <div class="form-group col-md-6">
-      <div class="col-md-6 spacing input-group-lg">
+
+  <div class=" row">
+      <div class="col-md-3 spacing">
         <input id="card-number"
                name="cardNumber"
                type="text"
-               class="form-control rounded-pill"
+               class="form-control rounded"
                placeholder="Numéro de compte"
-               [(ngModel)]="newTransaction.CardNumber" [ngModelOptions]="{ standalone: true }"/>
+               [(ngModel)]="contact.CardNumber" [ngModelOptions]="{ standalone: true }"
+               value={{contact.CardNumber}}/>
         <p>{{errorMessageCardNumber}}</p>
       </div>
-      
-    </div>
-    <div class="form-group col-md-6">
-      <div class="col-md-6 spacing">
-        <div class="input-group mb-3 input-group-lg">
+      <div class=" col-md-3 spacing">
+        <div class="input-group mb-3">
           <div class="input-group-prepend input-group-lg">
             <span class="input-group-text">€</span>
           </div>
@@ -90,69 +56,31 @@
           <p>{{errorMessageAmount}}</p>
         </div>
       </div>
-    </div>
   </div>
 
-  <div class="form-goup row">
-    <div class="form-group col-md-6">
-      <div class="col-md-6 spacing">
-        <input type="checkbox" name="save" value="saveBenef" /> Sauvegarder
-        bénéficiaire ?
-      </div>
-    </div>
-  </div>
 
-  <div class="form-goup row">
-    <div class="form-group col-md-6">
-      <div class="col-md-6 spacing">
-        <div class="d-inline-block me-1">Structurée</div>
-        <div class="form-check form-switch d-inline-block">
-          <input type="checkbox"
-                 class="form-check-input green"
-                 style="cursor: pointer"
-                 (click)="showCommunication()" />
-          <label for="site_state" class="form-check-label"> Libre</label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-goup row" *ngIf="showFree">
-    <div class="form-group col-md-12">
+  <div class=" row">
       <div class="col-md-9 spacing">
         <textarea placeholder="Communication"
                   class="form-control"
                   id="communication"
-                  rows="10"
+                  rows="3"
                   name="communication"
                   [(ngModel)]="newTransaction.Note" [ngModelOptions]="{ standalone: true }"></textarea>
         <p>{{errorMessageNote}}</p>
       </div>
-    </div>
   </div>
 
-  <div class="form-goup row" *ngIf="showStruct">
-    <div class="form-group col-md-6">
-      <div class="col-md-6 spacing">
-        <input type="text"
-               placeholder="+++ _ _ _ /_ _ _ _ /_ _ _ _ +++"
-               class="form-control rounded-pill"
-               name="structured"
-               [(ngModel)]="newTransaction.Note" [ngModelOptions]="{ standalone: true }" />
-        <p>{{errorMessageNote}}</p>
-      </div>
-    </div>
-  </div>
 
-  <div class="form-goup row">
-    <div class="form-group col-md-12">
-      <div class="d-flex justify-content-center final">
+
+  <div class=" row">
+    <div class=" col-md-12">
+      <div class="d-flex justify-content-center final mb-5">
         <input type="button"
                class="rounded-pill green"
                name="Confirmer"
                value="Confirmer Virement"
-               (click)="checkForm()"/>
+               (click)="checkForm()" />
       </div>
     </div>
   </div>
-</form>

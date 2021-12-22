@@ -13,7 +13,7 @@ export class TransferService {
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
-      'x-auth-token': 'I2142BO84k6WvZx0J4gaug=='
+      'x-auth-token': 'BVD6rTkj7U2/Ar+m3mvTXQ=='
     });
   }
 
