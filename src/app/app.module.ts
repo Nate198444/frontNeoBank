@@ -22,7 +22,6 @@ import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AddContactComponent } from './add-contact/add-contact.component';
-import { AddCardComponent } from './add-card/add-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { PanelConnectedComponent } from './panel-connected/panel-connected.component';
@@ -33,7 +32,6 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/profil/account', pathMatch: 'full' },
     { path: 'account', component: AccountComponent },
     { path: 'card', component: CardListComponent },
-    { path: 'card/add', component: AddCardComponent },
     { path: 'contact', component: ContactListComponent },
     { path: 'contact/edit/:id', component: AddContactComponent },
     { path: 'contact/add', component: AddContactComponent },
@@ -65,7 +63,6 @@ const appRoutes: Routes = [
     FooterComponent,
     HomeComponent,
     AddContactComponent,
-    AddCardComponent,
     RegisterComponent,
     PanelConnectedComponent
   ],
