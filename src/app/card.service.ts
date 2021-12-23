@@ -10,27 +10,24 @@ import { Card } from './card';
 })
 export class CardService {
 
-  private headers: HttpHeaders;
   private accessPointUrl: string = environment.urlPicsou + '/Cards';
-  constructor(private http: HttpClient, private cookie : CookieService) {
-    this.headers = new HttpHeaders({
-      'x-auth-token': this.cookie.get("token")
-    });
+  constructor(private http: HttpClient) {
+
   }
   public addCard(card: Card): Observable<Card>{
-    return this.http.post<Card>(this.accessPointUrl + '/' + localStorage.getItem("userID"),card, {headers: this.headers})
+    return this.http.post<Card>(this.accessPointUrl + '/' + localStorage.getItem("userID"),card)
   }
 
   public getCardsByUser(idUser: number): Observable<Card[]>{
-    return this.http.get<Card[]>(this.accessPointUrl + '/' + idUser,{headers: this.headers});
+    return this.http.get<Card[]>(this.accessPointUrl + '/' + idUser);
   }
 
-  public getCardByUserAndCard(idUser:number, idCard:number):Observable<Card>{
-    return this.http.get<Card>(this.accessPointUrl + '/' + idUser + '/' + idCard,{headers: this.headers});
+  public getCardByUserAndCard(id:number):Observable<Card>{
+    return this.http.get<Card>(this.accessPointUrl + '/' + localStorage.getItem("userID") + '/' + id);
   }
   //todo a supprimer si on utilise pas
 
   public deleteCard(id: number):Observable<Card>{
-    return this.http.delete<Card>(this.accessPointUrl + '/' + localStorage.getItem("userID") + '/' + id,{headers: this.headers});
+    return this.http.delete<Card>(this.accessPointUrl + '/' + localStorage.getItem("userID") + '/' + id);
   }
 }

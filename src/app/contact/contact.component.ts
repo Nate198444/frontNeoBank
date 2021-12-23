@@ -10,6 +10,7 @@ import { ContactService } from '../contact.service';
 })
 export class ContactComponent implements OnInit {
   @Input() contact!: Contact
+  @Output() refreshContacts = new EventEmitter<any>();
 
   constructor(private api: ContactService, cookie: CookieService) { }
 
@@ -17,7 +18,6 @@ export class ContactComponent implements OnInit {
   }
 
   public deleteContact(){
-    this.api.deleteContact(this.contact.Id!).subscribe();
-    location.reload();
+    this.api.deleteContact(this.contact.Id!).subscribe(() => this.refreshContacts.emit());
   }
 }

@@ -16,13 +16,18 @@ export class CardListComponent implements OnInit {
   constructor(private api: CardService) { }
 
   ngOnInit(): void {
-    this.cards$ = this.api.getCardsByUser(parseInt(localStorage.getItem("userID")!));
+    this.refreshCards()
     //todo Get items a faire apres le push de nathan
   }
 
+<<<<<<< HEAD
   public addCard(){
     this.api.addCard(this.card).subscribe();
     location.reload();
+=======
+  refreshCards(){
+    this.cards$ = this.api.getCardsByUser(parseInt(localStorage.getItem("userID")!));
+>>>>>>> origin/guard
   }
 
 }

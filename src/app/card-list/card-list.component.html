@@ -2,7 +2,7 @@
   <div class="card px-4">
     <ul style="list-style: none;">
       <li *ngFor="let card of cards$ | async;">
-        <app-card [card]="card"></app-card>
+        <app-card [card]="card" (refreshCards)="refreshCards()"></app-card>
       </li>
       <li>
         <button class="btn btn-primary" (click)="addCard()">Ajouter carte</button>

@@ -12,6 +12,6 @@
 <div class="p-3 mx-auto border border-2 mt-2" style="background-color: white; width: 90%; border-radius: 20px;">
   <h4 class="mb-4 fw-normal">Contacts</h4>
   <ul style="list-style: none;">
-    <li *ngFor="let contact of filteredContacts$ |async;"><app-contact [contact]="contact"></app-contact></li>
+    <li *ngFor="let contact of filteredContacts$ |async;"><app-contact [contact]="contact" (refreshContacts)="refreshContacts()"></app-contact></li>
   </ul>
 </div>

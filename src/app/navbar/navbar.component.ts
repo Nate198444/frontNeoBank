@@ -15,11 +15,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.cookie.check("token")){
-      this.isConnected = true
-    } else {
-      this.isConnected = false
-    }
+    this.refreshNavbar()
 
   }
 
@@ -29,6 +25,7 @@ export class NavbarComponent implements OnInit {
     } else {
       this.isConnected = false
     }
+
   }
 
   public disconnectUser(){

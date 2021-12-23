@@ -17,7 +17,7 @@ export class ContactListComponent implements OnInit {
   constructor(private api: ContactService, private cookie: CookieService) { }
 
   ngOnInit(): void {
-    this.contacts$ = this.api.getAllContact(parseInt(localStorage.getItem("userID")!));
+    this.refreshContacts()
     this.filteredContacts$ = this.contacts$
   }
 
@@ -25,6 +25,11 @@ export class ContactListComponent implements OnInit {
     this.filteredContacts$ = this.contacts$.pipe(
       map(contacts => contacts.filter(contact => contact.Name.startsWith(letter) || contact.Name.startsWith(letter.toLowerCase())))
     )
+  }
+
+  refreshContacts(){
+    this.contacts$ = this.api.getAllContact(parseInt(localStorage.getItem("userID")!));
+    this.filteredContacts$ = this.contacts$
   }
 
 }
