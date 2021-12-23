@@ -28,6 +28,7 @@ import { PanelConnectedComponent } from './panel-connected/panel-connected.compo
 import { LoanFormComponent } from './loan-form/loan-form.component';
 import { SecurityGuard } from './security.guard';
 import { TokenInterceptor } from './token.interceptor';
+import { Page404Component } from "./page404/page404.component";
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     { path: 'account', component: LeftProfilComponent, outlet: "outlet1" },
     { path: 'loanForm', component: LoanFormComponent }
   ]},
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', pathMatch: 'full', component: Page404Component }
 ];
 
 
