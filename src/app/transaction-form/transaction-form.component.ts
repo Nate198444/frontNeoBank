@@ -1,3 +1,4 @@
+import { asLiteral } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -21,18 +22,17 @@ export class TransactionFormComponent implements OnInit {
   contacts$!: Observable<Contact[]>;
   contact: Contact = <Contact>{};
 
+  isDisabled : string = "false";
+
+  regexCard = new RegExp('^\\d{16}$');
+
+  errorMessageCard: String = "";
   errorMessageName: String = "";
   errorMessageCardNumber: String = "";
   errorMessageAmount: String = "";
   errorMessageNote: String = "";
   contactId!: number;
-  newTransaction: Transfer = {
-    Card_Id: -1,
-    User_Id: -1,
-    Amount: 0,
-    CardNumber: "",
-    Note: "",
-  };
+  newTransaction: Transfer = <Transfer>{};
 
   constructor(private apiTransfer: TransferService,
     private router: Router,
@@ -51,13 +51,18 @@ export class TransactionFormComponent implements OnInit {
     var saveValide: Boolean = true;
     this.newTransaction.CardNumber = this.contact.CardNumber;
 
+    if (!this.newTransaction.Card_Id){
+      this.errorMessageCard = "Une carte doit être séléctionnée ! ";
+      saveValide = false;
+    } else this.errorMessageCard = "";
+
     if (this.contact.Name == null || this.newTransaction.CardNumber.length < 0){
       this.errorMessageName = "Le nom doit être rempli ! ";
       saveValide = false;
     } else this.errorMessageName = "";
 
-    if (this.newTransaction.CardNumber == null || this.newTransaction.CardNumber.length != 16){
-      this.errorMessageCardNumber = "Le numéro de carte doit contenir 16 caractères ! ";
+    if (this.newTransaction.CardNumber == null || !this.regexCard.test(this.newTransaction.CardNumber)){
+      this.errorMessageCardNumber = "Le numéro de carte doit contenir 16 chiffres ! ";
       saveValide = false;
     } else this.errorMessageCardNumber = "";
 
@@ -66,7 +71,7 @@ export class TransactionFormComponent implements OnInit {
       saveValide = false;
     } else this.errorMessageAmount = "";
 
-    if (this.newTransaction.Note.length > 250){
+    if (this.newTransaction.Note == null || this.newTransaction.Note.length > 250){
       this.errorMessageNote = "La note doit contenir moins de 250 caractères ! ";
       saveValide = false;
     } else this.errorMessageNote = "";
@@ -75,22 +80,27 @@ export class TransactionFormComponent implements OnInit {
   }
 
   getSelectedContact(){
-    this.apiContact.getOneContact(this.contactId).subscribe(contact => this.contact = contact);
+    if(this.contactId != -1){
+      this.apiContact.getOneContact(this.contactId).subscribe(contact => this.contact = contact);
+      this.isDisabled = "true";
+
+    }else{
+      this.isDisabled = "false"
+      this.contact = <Contact>{}
+    }
   }
 
   saveTransaction() {
     this.newTransaction.User_Id = parseInt(localStorage.getItem("userID")!)
-    const saveTransaction$: Observable<Transfer> = this.apiTransfer.addTransfer(this.newTransaction);
-    const subscription = saveTransaction$.subscribe((transaction) => {
-      this.newTransaction = {
-        Card_Id: -1,
-        User_Id: -1,
-        Amount: 0,
-        CardNumber: "",
-        Note: "",
-      };
-      subscription.unsubscribe();
-      this.router.navigate(['home']);
-    });
+    this.apiTransfer.addTransfer(this.newTransaction).subscribe((transaction) => {
+      this.router.navigate(['/profil/account']);
+
+    },
+    error => {
+      if(error.error.Message=="Not enough money on your card")this.errorMessageAmount = "Votre solde est insuffisant !"
+      if(error.error.Message=="Non-existent card")this.errorMessageCardNumber = "La carte n'est pas attribuée !"
+
+    }
+    );
   }
 }
