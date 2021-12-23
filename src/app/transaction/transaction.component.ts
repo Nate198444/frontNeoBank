@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Transfer } from '../transfer';
 
 @Component({
   selector: 'app-transaction',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
+
+  @Input() transfer!: Transfer;
 
   constructor() { }
 

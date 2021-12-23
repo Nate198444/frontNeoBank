@@ -1,19 +1,4 @@
-<div *ngFor="let item of transfersList$|async" class="row align-items-center rounded-pill m-3" style="background-color: #EFEFEF;">
-  <div class="col-2">
-    <img src="../../assets/img/profilpic.png"/>
-  </div>
-  <div class="col-7">
-    <p class="fs-4 fw-normal m-2">N° {{item.CardNumber}}</p>
-    <p class="fs-6 fw-lighter m-2">{{item.Date | date}}</p>
-  </div>
-  <div class="col-3">
-    <h3 *ngIf="item.Amount > 0" class="fs-4 text-success text-end pe-2">{{item.Amount}}</h3>
-    <h3 *ngIf="item.Amount < 0" class="fs-4 text-danger text-end pe-2">{{item.Amount}}</h3>
-
-  <!--
-    <div *ngIf="condition; else elseBlock">Content to render when condition is true.</div>
-<ng-template #elseBlock>Content to render when condition is false.</ng-template>
-  -->
-
-  </div>
+<div class="container m-5 p-3">
+  <p class="fs-5 fw-lighter m-2">Transactions</p>
+  <app-transaction *ngFor="let item of transfersList$|async" [transfer]="item"></app-transaction>
 </div>

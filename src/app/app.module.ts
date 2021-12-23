@@ -25,6 +25,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { PanelConnectedComponent } from './panel-connected/panel-connected.component';
+import { LoanFormComponent } from './loan-form/loan-form.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     { path: 'loan', component: LoanListComponent },
     { path: 'transactionForm', component: TransactionFormComponent },
     { path: 'account', component: LeftProfilComponent, outlet: "outlet1" },
+    { path: 'loanForm', component: LoanFormComponent }
   ]},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];

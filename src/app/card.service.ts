@@ -25,8 +25,8 @@ export class CardService {
     return this.http.get<Card[]>(this.accessPointUrl + '/' + idUser,{headers: this.headers});
   }
 
-  public getCardByUserAndCard(id:number):Observable<Card>{
-    return this.http.get<Card>(this.accessPointUrl + '/3/' /*localStorage.getItem("userID")*/ + id,{headers: this.headers});
+  public getCardByUserAndCard(idUser:number, idCard:number):Observable<Card>{
+    return this.http.get<Card>(this.accessPointUrl + '/' + idUser + '/' + idCard,{headers: this.headers});
   }
   //todo a supprimer si on utilise pas
 

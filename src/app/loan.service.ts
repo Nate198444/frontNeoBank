@@ -20,4 +20,8 @@ export class LoanService {
   getLoansByUser(userID:number): Observable<any> {
     return this.http.get<Loan>(this.accessPointUrl + "/" + userID, { headers : this.headers });
   }
+
+  addLoan(loan: Loan): Observable<Loan> {
+    return this.http.post<Loan>(this.accessPointUrl + "/" + localStorage.getItem("userID"), loan, { headers: this.headers });
+  }
 }

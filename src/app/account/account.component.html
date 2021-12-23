@@ -1,12 +1,12 @@
-
   <div class="body">
-      <div class="btn-group btn-toggle m-5 p-1">
-        <button class="btn fs-6 btn-lg btn-primary active">COURANT</button>
-        <button class="btn fs-6 btn-lg btn-default bg-white">EPARGNE</button>
-      </div>
+      <select id="inputCard" name="card" class="form-control" [(ngModel)]="cardId" [ngModelOptions]="{ standalone: true }" (change)="changeCard()">
+        <option *ngFor="let card of cards$|async; let i = index" [ngValue]=card.Id [selected]="i==0">
+          {{ card.CardNumber }}
+        </option>
+      </select>
       <div class="container m-5 p-3">
         <p class="fs-5 fw-lighter m-2">Solde</p>
-        <p class="fs-3 fw-normal m-2" *ngIf="card$">{{(card$ | async).Balance}}</p>
+        <p class="fs-3 fw-normal m-2" *ngIf="card">{{card.Balance}} €</p>
       </div>
-      <app-transaction></app-transaction>
+      <app-transaction-list></app-transaction-list>
   </div>

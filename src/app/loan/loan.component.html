@@ -1,17 +1,13 @@
 <div *ngFor="let item of loanList$|async" class="container mt-3">
   <div class="row py-2">
     <div class="col-auto">
-      <p class="fw-lighter m-2">Description</p>
-      <p class="fw-normal m-2">Note nulle</p>
-    </div>
-    <div class="col-auto">
       <p class="fw-lighter m-2 text-success">Emprunt en cours</p>
     </div>
   </div>
   <div class="row py-2">
     <div class="col-auto">
       <p class="fw-lighter m-2">Montant de l'emprunt</p>
-      <p class="fw-normal m-2">{{item.Amount}}</p>
+      <p class="fw-normal m-2">{{item.Amount}} €</p>
     </div>
     <div class="col-auto">
       <p class="fw-lighter m-2">Date de début</p>
@@ -19,7 +15,7 @@
     </div>
     <div class="col-auto">
       <p class="fw-lighter m-2">Montant mensuel</p>
-      <p class="fw-normal m-2">{{item.Mensuality}}</p>
+      <p class="fw-normal m-2">{{item.Mensuality | number:'1.2-2'}} €</p>
     </div>
   </div>
   <div class="row py-2">

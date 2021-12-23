@@ -1,0 +1,41 @@
+<p class="lead mt-5">Entrez les données de votre prêt</p>
+
+<form>
+  <div class="row mt-3">
+    <div class="col-3">
+      <label for="inputCard" class="form-label">N° Carte</label>
+      <select id="inputCard" name="card" class="form-control" [(ngModel)]="newLoan.Card_Id" [ngModelOptions]="{ standalone: true }">
+        <option *ngFor="let card of cards$|async" [value]=card.Id>
+          {{ card.CardNumber }}
+        </option>
+      </select>
+      <p class="text-danger">{{errorMessageLoanAmount}}</p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-3">
+      <label for="inputAmount" class="form-label">Montant €</label>
+      <input id="inputAmount" name="amount" type="text" class="form-control" [(ngModel)]="newLoan.Amount" [ngModelOptions]="{ standalone: true }">
+      <p class="text-danger">{{errorMessageLoanAmount}}</p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-3">
+      <label for="inputInterestRate" class="form-label">Taux d'intérêt %</label>
+      <input id="inputInterestRate" name="interestRate" type="text" class="form-control" [(ngModel)]="newLoan.InterestRate" [ngModelOptions]="{ standalone: true }">
+      <p class="text-danger">{{errorMessageLoanInterestRate}}</p>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-3">
+      <label for="inputEndDate" class="form-label">Date de fin</label>
+      <input id="inputEndDate" name="endDate" type="date" class="form-control" [(ngModel)]="newLoan.EndDate" [ngModelOptions]="{ standalone: true }">
+      <p class="text-danger">{{errorMessageLoanDate}}</p>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-3">
+      <input type="button" class="btn btn-primary" name="submit" value="Faire un prêt" (click)="checkForm()"/>
+    </div>
+  </div>
+</form>
