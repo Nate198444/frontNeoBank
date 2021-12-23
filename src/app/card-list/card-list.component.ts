@@ -20,6 +20,11 @@ export class CardListComponent implements OnInit {
     //todo Get items a faire apres le push de nathan
   }
 
+  public addCard(){
+    this.api.addCard(this.card).subscribe(() => this.refreshCards());
+  }
+
+
   refreshCards(){
     this.cards$ = this.api.getCardsByUser(parseInt(localStorage.getItem("userID")!));
   }

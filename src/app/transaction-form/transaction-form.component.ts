@@ -44,9 +44,12 @@ export class TransactionFormComponent implements OnInit {
   ngOnInit(): void {
     this.cards$ = this.apiCard.getCardsByUser(parseInt(localStorage.getItem("userID")!));
     this.contacts$ = this.apiContact.getAllContact(parseInt(localStorage.getItem("userID")!));
+
+
   }
 
   checkForm() {
+    console.log(this.newTransaction);
     var saveValide: Boolean = true;
     this.newTransaction.CardNumber = this.contact.CardNumber;
 
