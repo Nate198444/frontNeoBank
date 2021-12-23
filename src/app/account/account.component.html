@@ -1,9 +1,14 @@
   <div class="body">
-      <select id="inputCard" name="card" class="form-control" [(ngModel)]="cardId" [ngModelOptions]="{ standalone: true }" (change)="changeCard()">
-        <option *ngFor="let card of cards$|async; let i = index" [ngValue]=card.Id [selected]="i==0">
-          {{ card.CardNumber }}
-        </option>
-      </select>
+      <div class="container mx-5 mt-4 p-3">
+        <p class="h4 m-2">N° carte</p>
+        <div class="align-items-center m-2" >
+          <select id="inputCard" name="card" class="form-control" [(ngModel)]="cardId" [ngModelOptions]="{ standalone: true }" (change)="changeCard()">
+            <option *ngFor="let card of cards$|async; let i = index" [ngValue]=card.Id [selected]="i==0">
+              {{ card.CardNumber }}
+            </option>
+          </select>
+        </div>
+      </div>
       <div class="container m-5 p-3">
         <p class="fs-5 fw-lighter m-2">Solde</p>
         <p class="fs-3 fw-normal m-2" *ngIf="card">{{card.Balance}} €</p>

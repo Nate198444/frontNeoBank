@@ -66,7 +66,8 @@ const appRoutes: Routes = [
     HomeComponent,
     AddContactComponent,
     RegisterComponent,
-    PanelConnectedComponent
+    PanelConnectedComponent,
+    LoanFormComponent
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes), FormsModule,ReactiveFormsModule],
   providers: [CookieService],
