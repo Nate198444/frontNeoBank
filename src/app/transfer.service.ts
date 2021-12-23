@@ -13,7 +13,7 @@ export class TransferService {
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
-      'x-auth-token': 'D4x5PY9PcEGzEmtkA1YP4A=='
+      'x-auth-token': 'BVD6rTkj7U2/Ar+m3mvTXQ=='
     });
   }
 
@@ -22,7 +22,6 @@ export class TransferService {
   }
 
   addTransfer(transfer: Transfer): Observable<Transfer> {
-    console.log(transfer);
     return this.http.post<Transfer>(this.accessPointUrl, transfer, { headers: this.headers });
   }
 }

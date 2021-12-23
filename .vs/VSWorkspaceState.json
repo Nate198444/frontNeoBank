@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\card-list",
+    "\\src\\app\\contact-list",
+    "\\src\\app\\register",
+    "\\src\\app\\transaction-form"
+  ],
+  "SelectedNode": "\\src\\app\\transaction-form\\transaction-form.component.css",
+  "PreviewInSolutionExplorer": false
+}
