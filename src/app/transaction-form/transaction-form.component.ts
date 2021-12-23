@@ -25,7 +25,7 @@ export class TransactionFormComponent implements OnInit {
   errorMessageCardNumber: String = "";
   errorMessageAmount: String = "";
   errorMessageNote: String = "";
-
+  contactId!: number;
   newTransaction: Transfer = {
     Card_Id: -1,
     User_Id: -1,
@@ -44,8 +44,6 @@ export class TransactionFormComponent implements OnInit {
   ngOnInit(): void {
     this.cards$ = this.apiCard.getCardsByUser(parseInt(localStorage.getItem("userID")!));
     this.contacts$ = this.apiContact.getAllContact(parseInt(localStorage.getItem("userID")!));
-
-
   }
 
   checkForm() {
@@ -76,11 +74,12 @@ export class TransactionFormComponent implements OnInit {
     if(saveValide == true)this.saveTransaction();
   }
 
-  getSelectedContact(contactId : number){
-    this.apiContact.getOneContact(contactId).subscribe(contact => this.contact = contact);
+  getSelectedContact(){
+    this.apiContact.getOneContact(this.contactId).subscribe(contact => this.contact = contact);
   }
 
   saveTransaction() {
+    this.newTransaction.User_Id = parseInt(localStorage.getItem("userID")!)
     const saveTransaction$: Observable<Transfer> = this.apiTransfer.addTransfer(this.newTransaction);
     const subscription = saveTransaction$.subscribe((transaction) => {
       this.newTransaction = {
