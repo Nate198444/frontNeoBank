@@ -12,6 +12,7 @@ import { ContactService } from '../contact.service';
 })
 export class ContactListComponent implements OnInit {
   alphabet = ['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z']
+  selectedLetter = "*"
   contacts$!: Observable<Contact[]>;
   filteredContacts$!: Observable<Contact[]>;
   constructor(private api: ContactService, private cookie: CookieService) { }
@@ -22,6 +23,9 @@ export class ContactListComponent implements OnInit {
   }
 
   public filterContacts(letter: string) {
+    if(letter == "*")
+      letter = ""
+
     this.filteredContacts$ = this.contacts$.pipe(
       map(contacts => contacts.filter(contact => contact.Name.startsWith(letter) || contact.Name.startsWith(letter.toLowerCase())))
     )
