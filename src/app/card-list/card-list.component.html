@@ -1,6 +1,6 @@
 <div class="wrapper mb-2 row mx-auto">
   <div class="card px-4">
-    <ul style="list-style: none;">
+    <ul style="list-style: none;" >
       <li *ngFor="let card of cards$ | async;">
         <app-card [card]="card" (refreshCards)="refreshCards()"></app-card>
       </li>
