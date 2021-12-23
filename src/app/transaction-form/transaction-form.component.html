@@ -2,7 +2,7 @@
   <div class="row">
     <div class="form-floating col-md-9 mt-5 spacing">
       <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example" [(ngModel)]="newTransaction.Card_Id" [ngModelOptions]="{ standalone: true }">
-        <option *ngFor="let card of cards$ | async" [value]="card.Id">
+        <option *ngFor="let card of cards$ | async" [value]="card.Id" selected>
           {{ card.CardNumber }}
         </option>
       </select>
@@ -28,7 +28,8 @@
                type="text"
                class="form-control rounded"
                placeholder="Nom"
-               [(ngModel)]="contact.Name" [ngModelOptions]="{ standalone: true }" />
+               [(ngModel)]="contact.Name" [ngModelOptions]="{ standalone: true }" [readonly]="true"/>
+        <p>{{errorMessageName}}</p>
       </div>
   </div>
 
@@ -40,7 +41,7 @@
                class="form-control rounded"
                placeholder="Numéro de compte"
                [(ngModel)]="contact.CardNumber" [ngModelOptions]="{ standalone: true }"
-               value={{contact.CardNumber}}/>
+               value={{contact.CardNumber}} [readonly]="true"/>
         <p>{{errorMessageCardNumber}}</p>
       </div>
       <div class=" col-md-3 spacing">

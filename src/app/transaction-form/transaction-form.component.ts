@@ -21,9 +21,10 @@ export class TransactionFormComponent implements OnInit {
   contacts$!: Observable<Contact[]>;
   contact: Contact = <Contact>{};
 
-  errorMessageCardNumber: String = ""
-  errorMessageAmount: String = ""
-  errorMessageNote: String = ""
+  errorMessageName: String = "";
+  errorMessageCardNumber: String = "";
+  errorMessageAmount: String = "";
+  errorMessageNote: String = "";
 
   newTransaction: Transfer = {
     Card_Id: -1,
@@ -48,18 +49,27 @@ export class TransactionFormComponent implements OnInit {
   checkForm() {
     var saveValide: Boolean = true;
     this.newTransaction.CardNumber = this.contact.CardNumber;
+
+    if (this.contact.Name == null || this.newTransaction.CardNumber.length < 0){
+      this.errorMessageName = "Le nom doit être rempli ! ";
+      saveValide = false;
+    } else this.errorMessageName = "";
+
     if (this.newTransaction.CardNumber == null || this.newTransaction.CardNumber.length != 16){
       this.errorMessageCardNumber = "Le numéro de carte doit contenir 16 caractères ! ";
       saveValide = false;
-    }
+    } else this.errorMessageCardNumber = "";
+
     if (this.newTransaction.Amount == null || this.newTransaction.Amount <= 0){
       this.errorMessageAmount = "Le montant doit être supérieur à 0 ! "
       saveValide = false;
-    }
+    } else this.errorMessageAmount = "";
+
     if (this.newTransaction.Note.length > 250){
       this.errorMessageNote = "La note doit contenir moins de 250 caractères ! ";
       saveValide = false;
-    }
+    } else this.errorMessageNote = "";
+
     if(saveValide == true)this.saveTransaction();
   }
 
