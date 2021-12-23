@@ -18,8 +18,7 @@ export class TransactionListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getTransferForCard(idCard: number){
+  getTransfersForCard(idCard: number){
     this.transfersList$ = this.service.getTransfersByCard(idCard);
   }
-
 }

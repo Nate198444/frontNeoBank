@@ -8,9 +8,13 @@
   border-radius: 20px;
 }
 
-.container{
+.balance{
   height: auto;
   width: auto;
   border-radius: 25px;
   background-color: white;
+}
+
+.select{
+  width: 50%;
 }

@@ -18,12 +18,22 @@ export class AccountComponent implements OnInit {
 
   };
 
+  showView!: boolean;
+  dontShowView!: boolean;
+
   @ViewChild(TransactionListComponent) transactionList! : TransactionListComponent
 
   constructor(private service:CardService) { }
 
   ngOnInit(): void {
     this.cards$ = this.service.getCardsByUser(parseInt(localStorage.getItem("userID")!));
+    if(this.cards$ == null){
+      this.showView = true;
+      this.dontShowView = false;
+    } else {
+      this.dontShowView = true;
+      this.showView = false;
+    }
     this.cards$.subscribe(firstCard => {
       this.cardId = firstCard[0].Id!;
       this.changeCard();
@@ -33,7 +43,11 @@ export class AccountComponent implements OnInit {
   changeCard(){
     this.service.getCardByUserAndCard(parseInt(localStorage.getItem("userID")!), this.cardId).subscribe(card =>{
       this.card = card;
-      this.transactionList.getTransferForCard(this.cardId);
+      console.log(this.card);
+      console.log(this.cardId);
+      this.transactionList.getTransfersForCard(this.cardId);
+      console.log(this.cardId);
+
     });
   }
 }

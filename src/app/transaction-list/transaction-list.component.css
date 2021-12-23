@@ -1,7 +1,6 @@
-.col{
+.container{
   height: auto;
   width: auto;
-}
-.p{
-  font-size: 100%;
+  border-radius: 25px;
+  background-color: white;
 }
