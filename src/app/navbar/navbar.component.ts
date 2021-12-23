@@ -25,7 +25,6 @@ export class NavbarComponent implements OnInit {
     } else {
       this.isConnected = false
     }
-    console.log(this.isConnected);
 
   }
 
