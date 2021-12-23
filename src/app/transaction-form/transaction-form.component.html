@@ -7,6 +7,11 @@
         </option>
       </select>
       <label for="floatingCard">Liste des cartes</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 spacing">
       <p>{{errorMessageCard}}</p>
     </div>
   </div>
@@ -23,6 +28,7 @@
     </div>
   </div>
 
+
   <div class="row">
       <div class="col-md-9 spacing">
         <input id="card-holder"
@@ -32,60 +38,74 @@
                placeholder="Nom"
                [(ngModel)]="contact.Name" [ngModelOptions]="{ standalone: true }"
                [disabled]="isDisabled"/>
-        <p>{{errorMessageName}}</p>
       </div>
   </div>
+  <div class="row">
+    <div class="col-md-9 spacing">
+      <p>{{errorMessageName}}</p>
+    </div>
+</div>
 
-  <div class=" row">
-      <div class="col-md-3 spacing">
-        <input id="card-number"
-               name="cardNumber"
-               type="text"
-               class="form-control rounded"
-               placeholder="Numéro de compte"
-               [(ngModel)]="contact.CardNumber" [ngModelOptions]="{ standalone: true }"
-               value={{contact.CardNumber}}
-               [disabled]="isDisabled"/>
-        <p>{{errorMessageCardNumber}}</p>
-      </div>
-      <div class=" col-md-3 spacing">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">€</span>
-          </div>
-          <input type="text"
-                 name="amount"
-                 placeholder="Montant"
-                 class="form-control rounded-end"
-                 [(ngModel)]="newTransaction.Amount" [ngModelOptions]="{ standalone: true }" />
-          <p>{{errorMessageAmount}}</p>
+<div class=" row">
+    <div class="col-md-3 spacing">
+      <input id="card-number"
+              name="cardNumber"
+              type="text"
+              class="form-control rounded"
+              placeholder="Numéro de compte"
+              [(ngModel)]="contact.CardNumber" [ngModelOptions]="{ standalone: true }"
+              value={{contact.CardNumber}}
+              [disabled]="isDisabled"/>
+    </div>
+    <div class=" col-md-3 spacing">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">€</span>
         </div>
-      </div>
-  </div>
-
-
-  <div class=" row">
-      <div class="col-md-9 spacing">
-        <textarea placeholder="Communication"
-                  class="form-control"
-                  id="communication"
-                  rows="3"
-                  name="communication"
-                  [(ngModel)]="newTransaction.Note" [ngModelOptions]="{ standalone: true }"></textarea>
-        <p>{{errorMessageNote}}</p>
-      </div>
-  </div>
-
-
-
-  <div class=" row">
-    <div class=" col-md-12">
-      <div class="d-flex justify-content-center final mb-5">
-        <input type="button"
-               class="rounded-pill green"
-               name="Confirmer"
-               value="Confirmer Virement"
-               (click)="checkForm()" />
+        <input type="text"
+                name="amount"
+                placeholder="Montant"
+                class="form-control rounded-end"
+                [(ngModel)]="newTransaction.Amount" [ngModelOptions]="{ standalone: true }" />
       </div>
     </div>
+</div>
+<div class=" row">
+  <div class="col-md-3 spacing">
+    <p>{{errorMessageCardNumber}}</p>
   </div>
+  <div class=" col-md-3 spacing">
+    <p>{{errorMessageAmount}}</p>
+  </div>
+</div>
+
+
+<div class=" row">
+    <div class="col-md-9 spacing">
+      <textarea placeholder="Communication"
+                class="form-control"
+                id="communication"
+                rows="3"
+                name="communication"
+                [(ngModel)]="newTransaction.Note" [ngModelOptions]="{ standalone: true }"></textarea>
+    </div>
+</div>
+<div class=" row">
+  <div class="col-md-9 spacing">
+    <p>{{errorMessageNote}}</p>
+  </div>
+</div>
+
+
+
+<div class=" row">
+  <div class=" col-md-12">
+    <div class="d-flex justify-content-center final mb-5">
+      <input type="button"
+              class="rounded-pill green"
+              name="Confirmer"
+              value="Confirmer Virement"
+              (click)="checkForm()" />
+    </div>
+  </div>
+</div>
