@@ -9,7 +9,7 @@
       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
       <!-- NAVIGATION MENUS -->
       <div class="menu">
-        <li class="nav-item">
+        <li class="nav-item d-none d-lg-block">
           <button
             type="button"
             class="btn btn-primary me-2"
@@ -19,7 +19,7 @@
             S'inscrire
           </button>
         </li>
-        <li class="nav-item">
+        <li class="nav-item d-none d-lg-block">
           <button
             type="button"
             id="myInput"
@@ -29,6 +29,15 @@
           >
             Se connecter
           </button>
+        </li>
+        <!--Navbar recurcive taille laptop et smartphone-->
+        <li class="nav-item d-lg-none">
+          <a data-bs-toggle="modal"
+          data-bs-target="#registerModal">S'inscrire</a>
+        </li>
+        <li class="nav-item d-lg-none">
+          <a data-bs-toggle="modal"
+          data-bs-target="#exampleModal">Se connecter</a>
         </li>
       </div>      
     </ul>
@@ -40,7 +49,7 @@
       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
       <!-- NAVIGATION MENUS -->
       <div class="menu">
-        <li class="nav-item">
+        <li class="nav-item d-none d-lg-block">
           <button
             type="button"
             class="btn btn-primary"
@@ -49,7 +58,7 @@
             Virement
           </button>
         </li>
-        <li class="nav-item">
+        <li class="nav-item d-none d-lg-block">
           <button
             type="button"
             class="btn btn-primary"
@@ -57,23 +66,26 @@
           >
             Mon profil
           </button>
-        </li>        
-          <li class="d-lg-none">
-            <button type="button"
-            class="btn btn-primary" routerLink="/profil/account">Mes comptes bancaires</button>
-          </li>
-          <li class="d-lg-none">
-            <button type="button"
-            class="btn btn-primary" routerLink="/profil/card">Mes cartes</button>
-          </li>
-          <li class="d-lg-none">
-            <button type="button"
-            class="btn btn-primary" routerLink="/profil/contact">Mes bénéficiaire</button>
-          </li>
-          <li class="d-lg-none">
-            <button type="button"
-            class="btn btn-primary" routerLink="/profil/loan">Mes emprunts</button>
-          </li>
+        </li> 
+        <!--Navbar recurcive taille laptop et smartphone-->
+        <li class="nav-item d-lg-none">
+          <a routerLink="/profil">Mon profil</a>          
+        </li>  
+        <li class="nav-item d-lg-none">
+          <a routerLink="/profil/transactionForm">Virement</a>          
+        </li>     
+        <li class="d-lg-none">
+          <a routerLink="/profil/account">Mes comptes bancaires</a>            
+        </li>
+        <li class="d-lg-none">
+          <a routerLink="/profil/card">Mes cartes</a>
+        </li>
+        <li class="d-lg-none">
+          <a routerLink="/profil/contact">Mes bénéficiaire</a>
+        </li>
+        <li class="d-lg-none">
+          <a routerLink="/profil/loan">Mes emprunts</a>
+        </li>
         <li class="nav-item">
           <button
             type="button"

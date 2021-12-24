@@ -76,6 +76,9 @@ input[type=checkbox]{
  .menu li + li {
   margin-top: 12px;
  }
+ .menu li a {
+  text-decoration: none;
+ }
  input[type=checkbox]:checked ~ .menu{
   display: block;
  }
