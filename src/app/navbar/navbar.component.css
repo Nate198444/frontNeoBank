@@ -11,7 +11,83 @@
  li {
   list-style: none;
  }
-
+ /*CSS button*/
+  .content__item {
+   width: 100%;
+   height: 100%;
+   margin: 0;
+   padding: 0;
+   counter-increment: itemcounter;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   z-index: 1;
+   pointer-events: none;
+ }
+ 
+ .content__item::before {
+   color: var(--color-number);
+   position: absolute;
+   top: 0;
+   left: 0;
+   content: counters(itemcounter, ".", decimal-leading-zero);
+ }
+ .btn{   
+  padding: 9px 20px;
+  border: none;
+  border-radius: 0.5rem;
+  margin: 0;
+ }
+ .button {
+   pointer-events: auto;
+   cursor: pointer;
+   background: #04a9f5;
+   border: none;
+   padding: 10px 20px;
+   margin: 0;
+   font-family: inherit;
+   font-size: inherit;
+   position: relative;
+   display: inline-block;
+ }
+ 
+ .button::before,
+ .button::after {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+ }
+ 
+ .button--mimas {
+   text-transform: uppercase;
+   letter-spacing: 0.05rem;
+   font-weight: 700;
+   font-size: 0.85rem;
+   border-radius: 0.5rem;
+   overflow: hidden;
+   color: black;
+   background: #547bad;
+ }
+ .button--mimas span {
+   position: relative;
+ }
+ 
+ .button--mimas::before {
+   content: '';
+   background: white;
+   width: 120%;
+   left: -10%;
+   transform: skew(30deg);
+   transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+ } 
+ .button--mimas:hover::before {
+   transform: translate3d(100%,0,0);
+ }
+ 
  /* NAVBAR STYLING STARTS */
 .navbar {
   display: flex;
