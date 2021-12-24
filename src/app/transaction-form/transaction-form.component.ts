@@ -47,7 +47,6 @@ export class TransactionFormComponent implements OnInit {
   }
 
   checkForm() {
-    console.log(this.newTransaction);
     var saveValide: Boolean = true;
     this.newTransaction.CardNumber = this.contact.CardNumber;
 

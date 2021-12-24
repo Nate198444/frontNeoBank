@@ -1,4 +1,4 @@
-<div *ngFor="let item of loanList$|async" class="container mt-3">
+<div class="container mt-3">
   <div class="row py-2">
     <div class="col-auto">
       <p class="fw-lighter m-2 text-success">Emprunt en cours</p>
@@ -7,25 +7,25 @@
   <div class="row py-2">
     <div class="col-auto">
       <p class="fw-lighter m-2">Montant de l'emprunt</p>
-      <p class="fw-normal m-2">{{item.Amount}} €</p>
+      <p class="fw-normal m-2">{{loan.Amount}} €</p>
     </div>
     <div class="col-auto">
       <p class="fw-lighter m-2">Date de début</p>
-      <p class="fw-normal m-2">{{item.StartDate | date}}</p>
+      <p class="fw-normal m-2">{{loan.StartDate | date}}</p>
     </div>
     <div class="col-auto">
       <p class="fw-lighter m-2">Montant mensuel</p>
-      <p class="fw-normal m-2">{{item.Mensuality | number:'1.2-2'}} €</p>
+      <p class="fw-normal m-2">{{loan.Mensuality | number:'1.2-2'}} €</p>
     </div>
   </div>
   <div class="row py-2">
     <div class="col-auto">
       <p class="fw-lighter m-2">Taux d'intérêt</p>
-      <p class="fw-normal m-2">{{item.InterestRate}} %</p>
+      <p class="fw-normal m-2">{{loan.InterestRate}} %</p>
     </div>
     <div class="col-auto">
       <p class="fw-lighter m-2">Date de fin</p>
-      <p class="fw-normal m-2">{{item.EndDate | date}}</p>
+      <p class="fw-normal m-2">{{loan.EndDate | date}}</p>
     </div>
   </div>
 </div>

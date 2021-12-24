@@ -1,6 +1,6 @@
 <div class="mt-3">
-  <app-loan></app-loan>
-  <div class="py-3 ps-1">
+    <app-loan *ngFor="let item of loanList$|async" [loan]="item"></app-loan>
+  <div class="py-3 ps-1" *ngIf="showButton">
     <button type="button" class="btn btn-outline-success" routerLink="/profil/loanForm">+ Ajouter</button>
   </div>
 </div>

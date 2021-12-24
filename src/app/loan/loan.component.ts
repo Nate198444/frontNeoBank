@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 import { Loan } from '../loan';
-import { LoanService } from '../loan.service';
+
 
 @Component({
   selector: 'app-loan',
@@ -10,12 +9,11 @@ import { LoanService } from '../loan.service';
 })
 export class LoanComponent implements OnInit {
 
-  loanList$!: Observable<any>;
+  @Input() loan!: Loan;
 
-  constructor(private service:LoanService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.loanList$ = this.service.getLoansByUser(parseInt(localStorage.getItem("userID")!));
   }
 
 }
