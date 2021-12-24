@@ -18,9 +18,11 @@ export class LoanFormComponent implements OnInit {
 
   cards$!: Observable<Card[]>;
 
-  errorMessageLoanAmount: String = "";
-  errorMessageLoanInterestRate: String = "";
-  errorMessageLoanDate: String = "";
+  errorMessageLoanCard: string = "";
+  errorMessageLoanAmount: string = "";
+  errorMessageLoanInterestRate: string = "";
+  errorMessageLoanDate: string = "";
+  dateString: string = "";
   date: Date = new Date();
 
   newLoan: Loan = {
@@ -42,10 +44,34 @@ export class LoanFormComponent implements OnInit {
   }
 
   checkForm() {
-    if(this.newLoan.Amount < 1000 || this.newLoan.Amount > 100000) this.errorMessageLoanAmount = "Le Montant doit être compris entre 1000€ et 100 000€";
-    else if(this.newLoan.InterestRate < 0.1 || this.newLoan.InterestRate > 1) this.errorMessageLoanInterestRate = "Le taux d'intérêt doit être compris entre 0.1% et 1%";
-    else if(this.newLoan.EndDate.getTime < this.date.getTime) this.errorMessageLoanDate = "La date doit être supérieur à la date du jour";
-    else this.saveLoan();
+    this.newLoan.EndDate = new Date(this.dateString!);
+    var countError = 0;
+
+    if(this.newLoan.Card_Id < 0){
+      this.errorMessageLoanCard = "Veuillez entrer un numéro de carte";
+      countError++;
+    }
+    if(this.newLoan.Amount < 1000 || this.newLoan.Amount > 100000){
+      this.errorMessageLoanAmount = "Le Montant doit être compris entre 1000€ et 100 000€";
+      countError++;
+    }
+    if(this.newLoan.InterestRate < 0.1 || this.newLoan.InterestRate > 1){
+      this.errorMessageLoanInterestRate = "Le taux d'intérêt doit être compris entre 0.1% et 1%";
+      countError++;
+    }
+    if(this.newLoan.EndDate == this.newLoan.StartDate){
+      this.errorMessageLoanDate = "La date ne peut pas être vide";
+      countError++;
+    }
+
+    let days = Math.floor((this.newLoan.StartDate.getTime() - this.newLoan.EndDate.getTime()) / 1000 / 60 / 60 / 24);
+
+    if(days >= -31){
+      this.errorMessageLoanDate = "La durée du prêt doit être supérieure à 1 mois";
+      countError++;
+    }
+
+    if(countError ==0) this.saveLoan();
   }
 
   saveLoan() {

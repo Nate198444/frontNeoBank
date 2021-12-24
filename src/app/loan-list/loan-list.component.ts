@@ -19,6 +19,7 @@ export class LoanListComponent implements OnInit {
     this.loanList$ = this.service.getLoansByUser(parseInt(localStorage.getItem("userID")!));
     this.loanList$.subscribe(loans => {
       if(loans.length == 2) this.showButton = false;
+
     });
   }
 

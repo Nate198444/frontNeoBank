@@ -9,6 +9,7 @@
         {{ card.CardNumber }}
       </option>
     </select>
+    <p class="text-danger">{{errorMessageLoanCard}}</p>
   </div>
   <div class="container-fluid mt-3">
     <label for="inputAmount" class="form-label">Montant €</label>
@@ -22,7 +23,7 @@
   </div>
   <div class="container-fluid mt-3">
       <label for="inputEndDate" class="form-label">Date de fin</label>
-      <input id="inputEndDate" name="endDate" type="date" class="form-control" [(ngModel)]="newLoan.EndDate" [ngModelOptions]="{ standalone: true }">
+      <input id="inputEndDate" name="endDate" type="date" class="form-control" [(ngModel)]="dateString" [ngModelOptions]="{ standalone: true }">
       <p class="text-danger">{{errorMessageLoanDate}}</p>
   </div>
   <div class="container-fluid mt-4">
