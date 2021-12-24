@@ -1,21 +1,21 @@
-  <div class="body">
-    <div *ngIf="showView">
-      <div class="container mx-4 mt-4 p-3">
-        <p class="h4 m-2">N° carte</p>
-        <div class="col-3 align-items-center m-2">
-          <select id="inputCard" name="card" class="form-control" [(ngModel)]="cardId" [ngModelOptions]="{ standalone: true }" (change)="changeCard()">
-            <option *ngFor="let card of cards$|async; let i = index" [ngValue]=card.Id [selected]="i==0">
-              {{ card.CardNumber }}
-            </option>
-          </select>
-        </div>
+<div class="body">
+  <div *ngIf="showView">
+    <div class="col-10 col-lg-3 mx-1 mt-4 p-3">
+      <p class="h4 m-2">N° carte</p>
+      <div class="align-items-center m-2">
+        <select id="inputCard" name="card" class="form-control" [(ngModel)]="cardId" [ngModelOptions]="{ standalone: true }" (change)="changeCard()">
+          <option *ngFor="let card of cards$|async; let i = index" [ngValue]=card.Id [selected]="i==0">
+            {{ card.CardNumber }}
+          </option>
+        </select>
       </div>
-      <div class="container mx-5 mt-2 p-3 balance">
-        <p class="fs-5 fw-lighter m-2">Solde</p>
-        <p class="fs-3 fw-normal m-2" *ngIf="card">{{card.Balance}} €</p>
-      </div>
-      <app-transaction-list></app-transaction-list>
     </div>
+    <div class="container mx-3 mt-2 p-3 balance">
+      <p class="fs-5 fw-lighter m-2">Solde</p>
+      <p class="fs-4 fw-normal m-2" *ngIf="card">{{card.Balance}} €</p>
+    </div>
+    <app-transaction-list></app-transaction-list>
+  </div>
     <div class="h4 mx-3 mt-5" *ngIf="showView == false">
       VOUS NE POSSEDEZ PAS ENCORE DE CARTES...
       <br/><p class="fw-light fs-5">Pour en ajouter une, cliquez sur l'onglet "Mes cartes".</p>
