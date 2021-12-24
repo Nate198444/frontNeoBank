@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
   }
 
   public disconnectUser() {
-
+    //Error must happend when disconnect, the cookie isn't deleted and idk how to solve this problem
+    //It's apparently a knowed issue by the cookie service and must be due to the router.navigate
     this.api.disconnect().subscribe(() => {
       this.cookie.delete("token", '*/*', 'localhost')
       localStorage.clear()
