@@ -44,7 +44,9 @@ export class LoanFormComponent implements OnInit {
   }
 
   checkForm() {
-    this.newLoan.EndDate = new Date(this.dateString!);
+    this.initErrorMessages()
+    console.log(this.dateString);
+
     var countError = 0;
 
     if(this.newLoan.Card_Id < 0){
@@ -59,19 +61,26 @@ export class LoanFormComponent implements OnInit {
       this.errorMessageLoanInterestRate = "Le taux d'intérêt doit être compris entre 0.1% et 1%";
       countError++;
     }
-    if(this.newLoan.EndDate == this.newLoan.StartDate){
+    if(this.dateString == ""){
       this.errorMessageLoanDate = "La date ne peut pas être vide";
       countError++;
-    }
-
-    let days = Math.floor((this.newLoan.StartDate.getTime() - this.newLoan.EndDate.getTime()) / 1000 / 60 / 60 / 24);
-
-    if(days >= -31){
-      this.errorMessageLoanDate = "La durée du prêt doit être supérieure à 1 mois";
-      countError++;
+    } else {
+      this.newLoan.EndDate = new Date(this.dateString!);
+      let days = Math.floor((this.newLoan.StartDate.getTime() - this.newLoan.EndDate.getTime()) / 1000 / 60 / 60 / 24);
+      if(days >= -31){
+        this.errorMessageLoanDate = "La durée du prêt doit être supérieure à 1 mois";
+        countError++;
+      }
     }
 
     if(countError ==0) this.saveLoan();
+  }
+
+  initErrorMessages(){
+    this.errorMessageLoanAmount = ""
+    this.errorMessageLoanCard = ""
+    this.errorMessageLoanDate = ""
+    this.errorMessageLoanInterestRate = ""
   }
 
   saveLoan() {
